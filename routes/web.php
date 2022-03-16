@@ -23,9 +23,9 @@ Route::group([
     'as' => 'doctors.',
     'prefix' => 'doctor',
     'namespace' => 'App\Http\Controllers\Doctors',
-    'middleware' => ['auth']],
+    'middleware' => ['auth:doctor']],
     function () {
-        Route::get('/dashboard', [App\Http\Controllers\Doctors\DashboardController::class, 'index'])->name('dashboard');
+        Route::get('/dashboard1', [App\Http\Controllers\Doctors\DashboardController::class, 'index'])->name('dashboard');
     });
 
 
@@ -34,7 +34,7 @@ Route::group([
     'as' => 'consultants.',
     'prefix' => 'consultant',
     'namespace' => 'App\Http\Controllers\Consultant',
-    'middleware' => ['auth']],
+    'middleware' => ['auth:user']],
     function () {
         Route::get('/dashboard', [App\Http\Controllers\Consultant\DashboardController::class, 'index'])->name('dashboard');
     });
@@ -43,9 +43,9 @@ Route::group([
     'as' => 'patients.',
     'prefix' => 'patient',
     'namespace' => 'App\Http\Controllers\Patient',
-    'middleware' => ['auth']],
+    'middleware' => ['auth:patient']],
     function () {
-        Route::get('/dashboard', [App\Http\Controllers\Patients\DashboardController::class, 'index'])->name('dashboard');
+        Route::get('/dashboard3', [App\Http\Controllers\Patients\DashboardController::class, 'index'])->name('dashboard');
     });
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

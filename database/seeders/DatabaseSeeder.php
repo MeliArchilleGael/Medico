@@ -2,6 +2,9 @@
 
 namespace Database\Seeders;
 
+use App\Models\Doctor;
+use App\Models\Patient;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -17,13 +20,13 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
 
-        DB::table('users')->insert([
+        User::create([
             'name' => 'Dev user',
             'password' => Hash::make('password'),
             'email' => 'user@medico.com',
         ]);
 
-        DB::table('patients')->insert([
+        Patient::create([
             'name' => 'Dev patient',
             'address' => 'Douala',
             'date_of_birth' => '17/05/2000',
@@ -32,7 +35,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'patient@medico.com',
         ]);
 
-        DB::table('doctors')->insert([
+        Doctor::create([
             'name' => 'Dev doctor',
             'address' => 'Bamenda',
             'date_of_birth'=>'20/01/1997',

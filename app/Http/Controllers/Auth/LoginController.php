@@ -50,6 +50,7 @@ class LoginController extends Controller
         ]);
 
         if(Auth::guard('user')->attempt($credentials)){
+            //dd(Auth::guard('user')->user());
             return redirect()->route('consultants.dashboard');
 
         }else if(Auth::guard('patient')->attempt($credentials)) {
