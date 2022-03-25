@@ -10,7 +10,6 @@ class DashboardController extends Controller
     //
     public  function index()
     {
-        dd('present');
         return view('backend.doctors.dashboard');
     }
 }

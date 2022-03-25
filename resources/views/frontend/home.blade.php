@@ -76,6 +76,25 @@
 
             </div>
         </section><!-- End Cta Section -->
+        <main class="py-4">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-md-8">
+                        @if(session()->has('message'))
+                            @if(session()->has('error'))
+                                <div class="alert alert-danger" role="alert">
+                                    {{ session()->get('message') }}
+                                </div>
+                            @else
+                                <div class="alert alert-success" role="alert">
+                                    {{ session()->get('message') }}
+                                </div>
+                            @endif
+                        @endif
+                    </div>
+                </div>
+            </div>
+        </main>
 
         <!-- ======= About Us Section ======= -->
         <section id="about" class="about">
@@ -171,47 +190,83 @@
                     <p>Fill the form to make an appointment with one of ours thousand specialist doctor.</p>
                 </div>
 
-                <form action="" method="post" role="form" class="form" data-aos="fade-up"
+                <form action="{{ route('appointment.store') }}" method="post" role="form" class="form"
+                      data-aos="fade-up"
                       data-aos-delay="100">
                     @csrf
                     <div class="row">
                         <div class="col-md-4 form-group">
                             <label for="name">Name:</label><span style="color: red">  *</span>
-                            <input type="text" name="name" class="form-control" id="name" value="{{ old('name') }}"
+                            <input type="text" name="name" class="form-control @error('name') is-invalid @enderror"
+                                   id="name" value="{{ old('name') }}"
                                    placeholder="Your Name">
+                            @error('name')
+                            <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                            @enderror
                         </div>
                         <div class="col-md-4 form-group mt-3 mt-md-0">
-                            <label for="email">Email</label><span style="color: red">  *</span>
-                            <input type="email" class="form-control" name="email" id="email" value="{{ old('email') }}"
+                            <label for="email">Email</label>
+                            <input type="email" class="form-control @error('email') is-invalid @enderror" name="email"
+                                   id="email" value="{{ old('email') }}"
                                    placeholder="Your Email">
+                            @error('email')
+                            <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                            @enderror
                         </div>
                         <div class="col-md-4 form-group mt-3 mt-md-0">
                             <label for="phone">Phone Number</label><span style="color: red">  *</span>
-                            <input type="tel" class="form-control" name="phone" value="{{ old('phone') }}" id="phone"
+                            <input type="tel" class="form-control @error('phone') is-invalid @enderror" name="phone"
+                                   value="{{ old('phone') }}" id="phone"
                                    placeholder="Your Phone">
+                            @error('email')
+                            <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                            @enderror
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-4 form-group mt-3">
                             <label for="date">Date and time</label><span style="color: red">  *</span>
-                            <input type="datetime-local" name="date" class="form-control datepicker" id="date"
-                                   value="{{ old('date') }}" placeholder="Appointment Date">
+                            <input type="datetime-local" name="date_appointment"
+                                   class="form-control datepicker @error('date_appointment') is-invalid @enderror"
+                                   id="date"
+                                   value="{{ old('date_appointment') }}" placeholder="Appointment Date">
+                            @error('date_appointment')
+                            <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                            @enderror
                         </div>
 
                         <div class="col-md-4 form-group mt-3">
                             <label for="doctor">Select the doctor</label><span style="color: red">  *</span>
-                            <select name="doctor" id="doctor" class="form-select">
-                                <option value="">Select Doctor</option>
-                                <option value="Doctor 1">Doctor 1</option>
-                                <option value="Doctor 2">Doctor 2</option>
-                                <option value="Doctor 3">Doctor 3</option>
+                            <select name="doctor_id" id="doctor" class="form-select">
+                                <option selected disabled value="">Select Doctor</option>
+                                @foreach($doctors as $doctor)
+                                    <option value="{{ $doctor->id }}">{{ $doctor->name }}</option>
+                                @endforeach
                             </select>
+                            @error('doctor_id')
+                            <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                            @enderror
                         </div>
                     </div>
 
                     <div class="form-group mt-3">
-                        <textarea class="form-control" name="message" rows="5"
+                        <textarea class="form-control @error('message') is-invalid @enderror" name="message" rows="5"
                                   placeholder="Message (Optional)">{{ old('message') }}</textarea>
+                        @error('message')
+                        <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                        @enderror
                     </div>
 
                     <div class="text-center pt-3">
@@ -455,25 +510,75 @@
                     </div>
 
                     <div class="col-lg-6">
-                        <form action="" method="post" role="form" class="php-email-form">
+                        <form action="{{ route('message.store') }}" method="post" role="form" >
                             @csrf
                             <div class="row">
                                 <div class="col form-group">
-                                    <input type="text" name="name" class="form-control" id="name"
+                                    <label for="name">Your Name</label><span style="color: red">  *</span>
+                                    <input type="text" name="name_ct"
+                                           class="form-control @error('name_ct') is-invalid @enderror" id="name"
+                                           value="{{ old('name_ct') }}"
                                            placeholder="Your Name">
+
+                                    @error('name_ct')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
                                 </div>
-                                <div class="col form-group mt-3">
-                                    <input type="email" class="form-control" name="email" id="email"
+                                <div class="col form-group">
+                                    <label for="email">Your Email</label>
+                                    <input type="email" class="form-control @error('email_ct') is-invalid @enderror"
+                                           name="email_ct" id="email"
+                                           value="{{ old('email_ct') }}"
                                            placeholder="Your Email">
+
+                                    @error('email_ct')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col form-group mt-3">
+                                    <label for="phone">Your Phone Number</label><span style="color: red">  *</span>
+                                    <input type="tel" name="phone_ct"
+                                           class="form-control @error('phone_ct') is-invalid @enderror" id="phone"
+                                           placeholder="Your Phone Number"
+                                           value="{{ old('phone_ct') }}"
+                                    >
+                                    @error('phone_ct')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="form-group mt-3">
-                                <input type="text" class="form-control" name="subject" id="subject"
+                                <label for="subject">Subject of this message</label><span style="color: red">  *</span>
+                                <input type="text" class="form-control @error('subject') is-invalid @enderror"
+                                       name="subject" id="subject"
+                                       value="{{ old('subject') }}"
                                        placeholder="Subject">
+                                @error('subject')
+                                <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
                             <div class="form-group mt-3">
-                                <textarea class="form-control" name="message" rows="5" placeholder="Message"
+                                <label for="message">Enter your Message for we here</label><span
+                                    style="color: red">  *</span>
+                                <textarea id="message" class="form-control" name="message_ct" rows="5"
+                                          placeholder="Message"
+                                          value="{{ old('message') }}"
                                           required></textarea>
+                                @error('message_ct')
+                                <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
                             <div class="text-center pt-2">
                                 <button class="btn btn-primary" type="submit">Send Message</button>

@@ -13,10 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('frontend.home');
-});
-
+Route::get('/',[App\Http\Controllers\FrontendController::class, 'index'])->name('home');
+Route::post('/appointment/store',[App\Http\Controllers\FrontendController::class, 'storeAppointment'])->name('appointment.store');
+Route::post('/message/store', [App\Http\Controllers\FrontendController::class, 'storeMessage'])->name('message.store');
 Auth::routes();
 
 Route::group([
