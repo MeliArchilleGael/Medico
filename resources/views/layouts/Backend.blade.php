@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ config('app.name') }} - Dashboard</title>
+    <link href="{{ asset('assets/backend/datatables/dataTables.bootstrap4.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/backend/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/backend/css/font-awesome.min.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/backend/css/datepicker3.css') }}" rel="stylesheet">
@@ -33,6 +34,11 @@
 <script src="{{ asset('assets/backend/js/easypiechart-data.js') }}"></script>
 <script src="{{ asset('assets/backend/js/bootstrap-datepicker.js') }}"></script>
 <script src="{{ asset('assets/backend/js/custom.js') }}"></script>
+
+<script src="{{ asset("assets/backend/datatables/jquery.dataTables.min.js")}}"></script>
+<script src="{{ asset("assets/backend/datatables/dataTables.bootstrap4.min.js")}}"></script>
+
+<script src="{{ asset('assets/backend/js/toastr.min.js') }}"></script>
 <script>
     window.onload = function () {
         var chart1 = document.getElementById("line-chart").getContext("2d");
@@ -44,6 +50,6 @@
         });
     };
 </script>
-
+@yield('script')
 </body>
 </html>

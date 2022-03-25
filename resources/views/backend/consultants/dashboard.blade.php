@@ -23,13 +23,22 @@
     <div class="panel panel-container">
         <div class="row">
             <div class="col-xs-6 col-md-3 col-lg-3 no-padding">
-                <div class="panel panel-teal panel-widget border-right">
-                    <div class="row no-padding"><em class="fa fa-xl fa-shopping-cart color-blue"></em>
-                        <div class="large">120</div>
-                        <div class="text-muted">New Orders</div>
+                <div class="panel panel-orange panel-widget border-right">
+                    <div class="row no-padding"><em class="fa fa-xl fa-users color-teal"></em>
+                        <div class="large">{{ $patient }}</div>
+                        <div class="text-muted">Patients</div>
                     </div>
                 </div>
             </div>
+            <div class="col-xs-6 col-md-3 col-lg-3 no-padding">
+                <div class="panel panel-teal panel-widget border-right">
+                    <div class="row no-padding"><em class="fa fa-xl fa-user color-blue"></em>
+                        <div class="large">{{ $doctor }}</div>
+                        <div class="text-muted">Doctors</div>
+                    </div>
+                </div>
+            </div>
+            {{--
             <div class="col-xs-6 col-md-3 col-lg-3 no-padding">
                 <div class="panel panel-blue panel-widget border-right">
                     <div class="row no-padding"><em class="fa fa-xl fa-comments color-orange"></em>
@@ -38,14 +47,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-xs-6 col-md-3 col-lg-3 no-padding">
-                <div class="panel panel-orange panel-widget border-right">
-                    <div class="row no-padding"><em class="fa fa-xl fa-users color-teal"></em>
-                        <div class="large">24</div>
-                        <div class="text-muted">New Users</div>
-                    </div>
-                </div>
-            </div>
+
             <div class="col-xs-6 col-md-3 col-lg-3 no-padding">
                 <div class="panel panel-red panel-widget ">
                     <div class="row no-padding"><em class="fa fa-xl fa-search color-red"></em>
@@ -53,9 +55,10 @@
                         <div class="text-muted">Page Views</div>
                     </div>
                 </div>
-            </div>
+            </div>--}}
         </div><!--/.row-->
     </div>
+    {{--
     <div class="row">
         <div class="col-md-12">
             <div class="panel panel-default">
@@ -94,7 +97,8 @@
             </div>
         </div>
     </div><!--/.row-->
-
+    --}}
+    {{--
     <div class="row">
         <div class="col-xs-6 col-md-3">
             <div class="panel panel-default">
@@ -133,7 +137,9 @@
             </div>
         </div>
     </div><!--/.row-->
+    --}}
 
+    {{--
     <div class="row">
         <div class="col-md-6">
             <div class="panel panel-default chat">
@@ -388,4 +394,5 @@
             <p class="back-link">Lumino Theme by <a href="https://www.medialoot.com">Medialoot</a></p>
         </div>
     </div><!--/.row-->
+    --}}
 @endsection

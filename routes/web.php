@@ -18,16 +18,6 @@ Route::post('/appointment/store',[App\Http\Controllers\FrontendController::class
 Route::post('/message/store', [App\Http\Controllers\FrontendController::class, 'storeMessage'])->name('message.store');
 Auth::routes();
 
-Route::group([
-    'as' => 'doctors.',
-    'prefix' => 'doctor',
-    'namespace' => 'App\Http\Controllers\Doctors',
-    'middleware' => ['auth:doctor']],
-    function () {
-        Route::get('/dashboard1', [App\Http\Controllers\Doctors\DashboardController::class, 'index'])->name('dashboard');
-    });
-
-
 
 Route::group([
     'as' => 'consultants.',
@@ -36,6 +26,17 @@ Route::group([
     'middleware' => ['auth:user']],
     function () {
         Route::get('/dashboard', [App\Http\Controllers\Consultant\DashboardController::class, 'index'])->name('dashboard');
+        Route::resource('patients', PatientController::class);
+    });
+
+
+Route::group([
+    'as' => 'doctors.',
+    'prefix' => 'doctor',
+    'namespace' => 'App\Http\Controllers\Doctors',
+    'middleware' => ['auth:doctor']],
+    function () {
+        Route::get('/dashboard', [App\Http\Controllers\Doctors\DashboardController::class, 'index'])->name('dashboard');
     });
 
 Route::group([
