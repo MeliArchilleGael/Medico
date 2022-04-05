@@ -115,6 +115,11 @@
                     </a></li>
             </ul>
         </li>
-        <li><a href="login.html"><em class="fa fa-power-off">&nbsp;</em> Logout</a></li>
+        <li>
+            <a title="Dashboard" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="dropdown-item text-danger"><em class="fa fa-power-off"></em> Logout</a>
+            <form id="logout-form" hidden method="POST" action="{{ route('logout') }}">
+                @csrf
+            </form>
+        </li>
     </ul>
 </div><!--/.sidebar-->

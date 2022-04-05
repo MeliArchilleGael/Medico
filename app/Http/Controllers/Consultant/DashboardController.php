@@ -15,6 +15,6 @@ class DashboardController extends Controller
     {
         $patient = Patient::count();
         $doctor = Doctor::count();
-        return view('backend.consultants.dashboard', compact( 'messages', 'patient', 'doctor'));
+        return view('backend.consultants.dashboard', compact('patient', 'doctor'));
     }
 }

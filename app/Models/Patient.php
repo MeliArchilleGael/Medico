@@ -13,4 +13,5 @@ class Patient extends Authenticatable
         'password',
         'remember_token',
     ];
+    protected $guarded = [];
 }
