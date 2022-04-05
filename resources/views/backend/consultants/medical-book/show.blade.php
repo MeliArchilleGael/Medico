@@ -9,8 +9,9 @@
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <div class="content-between p-1">
-                <h5 class="fw-bolder text-center text-primary"> {{ 'List of Patients' }} </h5>
-                <a href="{{ route('consultants.patients.create') }}" class="btn btn-primary btn-circle">
+                <h3 class="fw-bolder text-center text-primary"> {{ 'List of Consultations of the patient' }} </h3>
+                <h3 class="fw-bolder text-center text-primary"> {{ $patient->name }} </h3>
+                <a href="{{ route('consultants..create') }}" class="btn btn-primary btn-circle">
                     <i class="fa fa-plus"></i>
                 </a>
             </div>

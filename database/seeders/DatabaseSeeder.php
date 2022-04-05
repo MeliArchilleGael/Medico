@@ -20,6 +20,8 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
 
+        $this->call(ConsultationSeed::class);
+
         User::create([
             'name' => 'Dev user',
             'password' => Hash::make('password'),

@@ -17,8 +17,8 @@ class CreatePrescribedExamsTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('status')->default('Not Done');
-            $table->string('result');
-            $table->longText('observation');
+            $table->string('result')->nullable();
+            $table->longText('observation')->nullable();
             $table->foreignId('consultation_id')->constrained('consultations');
             $table->timestamps();
         });

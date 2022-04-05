@@ -14,4 +14,9 @@ class Patient extends Authenticatable
         'remember_token',
     ];
     protected $guarded = [];
+
+    public function consultations(){
+        return $this->hasMany(Consultation::class);
+    }
+
 }

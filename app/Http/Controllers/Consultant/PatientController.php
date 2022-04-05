@@ -17,7 +17,7 @@ class PatientController extends Controller
     public function index()
     {
         //
-        $patients = Patient::latest()->get();
+        $patients = Patient::latest()->with('consultations')->get();
         return view('backend.consultants.patients.index', compact('patients'));
     }
 

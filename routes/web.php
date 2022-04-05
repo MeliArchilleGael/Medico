@@ -27,6 +27,8 @@ Route::group([
     function () {
         Route::get('/dashboard', [App\Http\Controllers\Consultant\DashboardController::class, 'index'])->name('dashboard');
         Route::resource('patients', PatientController::class);
+        Route::resource('medical-book', MedicalBookController::class);
+
     });
 
 

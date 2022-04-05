@@ -16,6 +16,9 @@ class Appointment extends Model
         'doctor_id',
         'date_appointment',
         'message',
-
     ];
+
+    public function doctor(){
+        return $this->belongsTo(Doctor::class);
+    }
 }
