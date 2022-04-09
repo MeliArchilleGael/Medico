@@ -13,6 +13,8 @@ class Consultation extends Model
         return $this->hasMany(Observation::class);
     }
 
+    protected $with = ['prescribedExams','prescribedDrugs'];
+
     public function patient()
     {
         return $this->belongsTo(Patient::class);

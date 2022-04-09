@@ -9,9 +9,10 @@
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <div class="content-between p-1">
-                <h3 class="fw-bolder text-center text-primary"> {{ 'List of Consultations of the patient' }} </h3>
-                <h3 class="fw-bolder text-center text-primary"> {{ $patient->name }} </h3>
-                <a href="{{ route('consultants..create') }}" class="btn btn-primary btn-circle">
+                <div class="fw-bolder text-center text-primary">
+                    <span style="font-size:20px">{{ 'List of Consultations of the patient:' }} {{ $patient->name }}</span>
+                </div>
+                <a href="{{ route('consultants.medical-book.create') }}" class="btn btn-primary btn-circle">
                     <i class="fa fa-plus"></i>
                 </a>
             </div>
@@ -23,9 +24,9 @@
                     <thead>
                     <tr>
                         <th class="text-center">S/N</th>
-                        <th class="text-center"> Name </th>
-                        <th class="text-center"> Telephone</th>
-                        <th class="text-center"> Address</th>
+                        <th class="text-center"> Name consultation</th>
+                        <th class="text-center"> Prescribed By</th>
+                        <th class="text-center"> Status</th>
                         <th class="text-center"> Created At </th>
                         <th class="text-center"> Operation </th>
                     </tr>
@@ -33,34 +34,35 @@
                     <tfoot>
                     <tr>
                         <th class="text-center">S/N</th>
-                        <th class="text-center"> Name </th>
-                        <th class="text-center"> Telephone</th>
-                        <th class="text-center"> Address</th>
+                        <th class="text-center"> Name consultation</th>
+                        <th class="text-center"> Prescribed By</th>
+                        <th class="text-center"> Status</th>
                         <th class="text-center"> Created At </th>
                         <th class="text-center"> Operation </th>
                     </tr>
                     </tfoot>
                     <tbody>
-                    @foreach($patients as $key=>$patient)
+                    @foreach($patient['consultations'] as $key=>$consultation)
                         <tr class="hover:bg-gray-50 text-center">
                             <td class="align-middle">
                                 {{ $key+1 }}
                             </td>
-                            <td class="align-middle"> {{ $patient->name }} </td>
-                            <td class="align-middle"> {{ $patient->telephone }} </td>
-                            <td class="align-middle"> {{ $patient->address }} </td>
-                            <td class="align-middle"> {{ $patient->created_at }} </td>
+                            <td class="align-middle"> {{ $consultation->name }} </td>
+                            <td class="align-middle"> {{ $consultation->done_by }} </td>
+                            @if($consultation->status==='Not Done')
+                                <td class="align-middle"> <span class="badge badge-danger">{{ $consultation->status }}</span> </td>
+                            @else
+                                <td class="align-middle"> <span class="badge bg-success">{{ $consultation->status }}</span> </td>
+                            @endif
+
+                            <td class="align-middle"> {{ $consultation->date_consultation }} </td>
 
                             <td class="align-middle">
-                                <a href="#" data-toggle="modal" data-target="{{ '#deleteModal'.$key }}"
-                                   class="btn btn-danger">
-                                    <i class="fa fa-trash"></i>
-                                </a>
                                 <a href="#" data-toggle="modal" data-target="{{ '#showModal'.$key }}"
                                    class="btn btn-warning">
                                     <i class="fa fa-eye"></i>
                                 </a>
-                                <a href="{{ route('consultants.patients.edit', $patient) }}"
+                                <a href="{{ route('consultants.medical-book.edit', $patient) }}"
                                    class="btn btn-primary">
                                     <i class="fa fa-pencil"></i>
                                 </a>
@@ -78,7 +80,7 @@
     </div>
 
     <!-- delete Modal-->
-    @foreach($patients  as $key=>$patient)
+    @foreach($patient['consultations']  as $key=>$consultation)
         <div class="modal fade" id="{{ 'deleteModal'.$key }}" tabindex="-1" role="dialog"
              aria-labelledby="exampleModalLabel"
              aria-hidden="true">
@@ -90,11 +92,11 @@
                             <span aria-hidden="true">×</span>
                         </button>
                     </div>
-                    <div class="modal-body">{{ __('Delete Patient Information ') }}</div>
+                    <div class="modal-body">{{ __('Delete Patient Consultation ') }}</div>
                     <div class="modal-footer content-between">
                         <button class="btn btn-secondary" type="button"
                                 data-dismiss="modal">{{ __('Cancel') }}</button>
-                        <form action="{{ route('consultants.patients.destroy', $patient->id) }}" method="post">
+                        <form action="{{ route('consultants.medical-book.destroy', $consultation->id) }}" method="post">
                             @method('DELETE')
                             @csrf
                             <button class="btn btn-danger" type="submit">{{ __('Delete') }}</button>
@@ -109,42 +111,49 @@
              aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">{{ __('More about the Patient ') }}</h5>
+                    <div class="modal-header align-content-center">
+                        <div class="modal-title" id="exampleModalLabel">{{ __('More about the Consultation of the client ') }}</div>
                         <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">×</span>
+                            <span class="text-danger" aria-hidden="true">×</span>
                         </button>
                     </div>
                     <div class="modal-body">
-                        {{ __('Name') }} :
+                        <strong> {{ __('About the consultation') }} </strong>
+                        <hr>
                         <ul class="list-unstyled ml-3">
-                            <li>{{ $patient->name }}</li>
+                            <li>Name: {{ $consultation->name }}</li>
+                            <li>Date: {{ $consultation->date_consultation }}</li>
+                            <li>Done by the : {{ $consultation->role_prescrisber }}: {{ $consultation->done_by }}</li>
+                            <li>Status: {{ $consultation->status }} </li>
+                        </ul>
+
+                        <strong> {{ __('Exams Prescribed') }} </strong>
+                        <ul class="list-unstyled ml-3">
+                            @if($consultation['prescribedExams']->isEmpty())
+                                No Data Found
+                            @else
+                                @foreach($consultation['prescribedExams'] as $exam)
+                                    <li>Name: <strong>{{ $exam->name }}</strong></li>
+                                    <li>Status: <strong>{{ $exam->status }}</strong></li>
+                                    <li>Result: <strong>{{ $exam->result }}</strong></li>
+                                    <li>Observation: <strong>{{ $exam->observation }}</strong></li>
+                                    <br>
+                                @endforeach
+                            @endif
                         </ul>
                         <hr>
-                        {{ __('Email') }} :
+
+                        <strong> {{ __('Drugs Prescribed') }}  </strong>
                         <ul class="list-unstyled ml-3">
-                            <li>{{ $patient->email }}</li>
+                            @foreach($consultation['prescribedDrugs'] as $exam)
+                                <li>Name: {{ $exam->name }}</li>
+                                <li>Status: {{ $exam->status }}</li>
+                                <li>Observation: {{ $exam->observation }}</li>
+                                <br>
+                            @endforeach
                         </ul>
                         <hr>
-                        {{ __('Telephone') }} :
-                        <ul class="list-unstyled ml-3">
-                            <li>{{ $patient->telephone }}</li>
-                        </ul>
-                        <hr>
-                        {{ __('Blood Group') }} :
-                        <ul class="list-unstyled ml-3">
-                            <li>{{ $patient->blood_group }}</li>
-                        </ul>
-                        <hr>
-                        {{ __('Address') }} :
-                        <ul class="list-unstyled ml-3">
-                            <li>{{ $patient->address }}</li>
-                        </ul>
-                        <hr>
-                        {{ __('Date of birth') }} :
-                        <ul class="list-unstyled ml-3">
-                            <li>{{ $patient->date_of_birth }}</li>
-                        </ul>
+
 
                     </div>
                     <div class="modal-footer">

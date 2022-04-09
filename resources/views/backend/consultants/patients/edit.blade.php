@@ -19,7 +19,7 @@
 
                             <form class="user" action="{{route('consultants.patients.update',$patient->id)}}" method="POST"
                                   enctype="multipart/form-data">
-                                @method('PUT')
+                                @method('PATCH')
                                 @csrf
                                 <div class="form-group row">
                                     <div class="col-sm-12 col-md-6 mb-3 mb-sm-0">
@@ -122,7 +122,7 @@
                                             </span>
                                         @enderror
                                     </div>
-                                    <div class="col-sm-12 col-md-6 mb-3 mb-sm-0">
+                                    {{--<div class="col-sm-12 col-md-6 mb-3 mb-sm-0">
                                         <label for="date_of_birth">{{ __('Date of birth') }}</label><span style="color:red">*</span>
                                         <input type="date"
                                                class="form-control form-control-user @error('date_of_birth')is-invalid @enderror"
@@ -134,7 +134,7 @@
                                                 <strong>{{ $message }}</strong>
                                             </span>
                                         @enderror
-                                    </div>
+                                    </div>--}}
                                 </div>
 
                                 <hr>

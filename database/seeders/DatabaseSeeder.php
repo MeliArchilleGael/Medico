@@ -20,8 +20,6 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
 
-        $this->call(ConsultationSeed::class);
-
         User::create([
             'name' => 'Dev user',
             'password' => Hash::make('password'),
@@ -45,5 +43,7 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('password'),
             'email' => 'doctor@medico.com',
         ]);
+
+        $this->call(ConsultationSeed::class);
     }
 }
