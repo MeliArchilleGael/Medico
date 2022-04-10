@@ -75,6 +75,8 @@ class PatientController extends Controller
     public function show($id)
     {
         //
+        $patient = Patient::where('id', $id)->with('consultations')->firstOrFail();
+        return view('backend.consultants.medical-book.show', compact('patient'));
     }
 
     /**

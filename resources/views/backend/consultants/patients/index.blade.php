@@ -63,7 +63,7 @@
                                    class="btn btn-primary">
                                     <i class="fa fa-pencil"></i>
                                 </a>
-                                <a href="{{ route('consultants.medical-book.show', $patient) }}"
+                                <a href="{{ route('consultants.patients.show', $patient) }}"
                                    class="btn btn-info">
                                     <i class="fa fa-folder-open"></i>
                                 </a>

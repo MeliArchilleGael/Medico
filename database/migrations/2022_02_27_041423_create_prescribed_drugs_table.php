@@ -16,7 +16,7 @@ class CreatePrescribedDrugsTable extends Migration
         Schema::create('prescribed_drugs', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->longText('observation');
+            $table->longText('observation')->nullable();
             $table->string('status')->default('Not Buy');
             $table->foreignId('consultation_id')->constrained('consultations');
             $table->timestamps();

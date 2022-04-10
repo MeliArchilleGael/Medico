@@ -12,7 +12,7 @@
                 <div class="fw-bolder text-center text-primary">
                     <span style="font-size:20px">{{ 'List of Consultations of the patient:' }} {{ $patient->name }}</span>
                 </div>
-                <a href="{{ route('consultants.medical-book.create') }}" class="btn btn-primary btn-circle">
+                <a href="{{ route('consultants.consultation.create', $patient) }}" class="btn btn-primary btn-circle">
                     <i class="fa fa-plus"></i>
                 </a>
             </div>
@@ -130,7 +130,7 @@
                         <strong> {{ __('Exams Prescribed') }} </strong>
                         <ul class="list-unstyled ml-3">
                             @if($consultation['prescribedExams']->isEmpty())
-                                No Data Found
+                                No Prescribed exams found for this consultation
                             @else
                                 @foreach($consultation['prescribedExams'] as $exam)
                                     <li>Name: <strong>{{ $exam->name }}</strong></li>
@@ -145,12 +145,16 @@
 
                         <strong> {{ __('Drugs Prescribed') }}  </strong>
                         <ul class="list-unstyled ml-3">
-                            @foreach($consultation['prescribedDrugs'] as $exam)
-                                <li>Name: {{ $exam->name }}</li>
-                                <li>Status: {{ $exam->status }}</li>
-                                <li>Observation: {{ $exam->observation }}</li>
-                                <br>
-                            @endforeach
+                            @if($consultation['prescribedDrugs']->isEmpty())
+                                Not Drugs Prescribed for this consultation
+                            @else
+                                @foreach($consultation['prescribedDrugs'] as $exam)
+                                    <li>Name: <strong>{{ $exam->name }}</strong></li>
+                                    <li>Status: <strong>{{ $exam->status }}</strong></li>
+                                    <li>Observation: <strong>{{ $exam->observation }}</strong></li>
+                                    <br>
+                                @endforeach
+                            @endif
                         </ul>
                         <hr>
 

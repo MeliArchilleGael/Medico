@@ -9,6 +9,7 @@
     <link href="{{ asset('assets/backend/css/font-awesome.min.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/backend/css/datepicker3.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/backend/css/styles.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/feature.css') }}" rel="stylesheet">
     <!--Custom Font-->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i"
           rel="stylesheet">
@@ -16,6 +17,8 @@
 	<script defer src="{{ asset('assets/backend/js/html5shiv.js') }}"></script>
 	<script defer src="{{ asset('assets/backend/js/respond.min.js') }}"></script>
 	<![endif]-->
+
+    <script defer src="{{ asset('js/script.js') }}" ></script>
 </head>
 <body>
 
@@ -39,7 +42,7 @@
 
 <script src="{{ asset('assets/backend/js/toastr.min.js') }}"></script>
 <script>
-    window.onload = function () {
+   /* window.onload = function () {
         var chart1 = document.getElementById("line-chart").getContext("2d");
         window.myLine = new Chart(chart1).Line(lineChartData, {
             responsive: true,
@@ -47,7 +50,7 @@
             scaleGridLineColor: "rgba(0,0,0,.05)",
             scaleFontColor: "#c5c7cc"
         });
-    };
+    };*/
 </script>
 @yield('script')
 </body>

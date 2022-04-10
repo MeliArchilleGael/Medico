@@ -9,6 +9,7 @@ class Consultation extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
     public function observations(){
         return $this->hasMany(Observation::class);
     }
