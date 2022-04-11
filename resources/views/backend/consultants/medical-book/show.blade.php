@@ -62,14 +62,14 @@
                                    class="btn btn-warning">
                                     <i class="fa fa-eye"></i>
                                 </a>
-                                <a href="{{ route('consultants.medical-book.edit', $patient) }}"
+                                <a href="{{ route('consultants.medical-book.edit', $consultation) }}"
                                    class="btn btn-primary">
                                     <i class="fa fa-pencil"></i>
                                 </a>
-                                <a href="{{ route('consultants.medical-book.show', $patient) }}"
+                                {{--<a href="{{ route('consultants.medical-book.show', $patient) }}"
                                    class="btn btn-info">
                                     <i class="fa fa-folder-open"></i>
-                                </a>
+                                </a>--}}
                             </td>
                         </tr>
                     @endforeach
@@ -126,7 +126,19 @@
                             <li>Done by the : {{ $consultation->role_prescrisber }}: {{ $consultation->done_by }}</li>
                             <li>Status: {{ $consultation->status }} </li>
                         </ul>
-
+                        <hr>
+                        <strong> {{ __('Observation') }} </strong>
+                        <ul class="list-unstyled ml-3">
+                            @if($consultation['observations']->isEmpty())
+                                No Observation found for this consultation
+                            @else
+                                @foreach($consultation['observations'] as $observation)
+                                    <li>Name: <strong>{{ $observation->observation }}</strong></li>
+                                    <br>
+                                @endforeach
+                            @endif
+                        </ul>
+                        <hr>
                         <strong> {{ __('Exams Prescribed') }} </strong>
                         <ul class="list-unstyled ml-3">
                             @if($consultation['prescribedExams']->isEmpty())
@@ -142,6 +154,7 @@
                             @endif
                         </ul>
                         <hr>
+
 
                         <strong> {{ __('Drugs Prescribed') }}  </strong>
                         <ul class="list-unstyled ml-3">

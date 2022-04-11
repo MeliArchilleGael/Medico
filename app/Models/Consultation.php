@@ -14,7 +14,7 @@ class Consultation extends Model
         return $this->hasMany(Observation::class);
     }
 
-    protected $with = ['prescribedExams','prescribedDrugs'];
+    protected $with = ['prescribedExams','prescribedDrugs', 'observations'];
 
     public function patient()
     {

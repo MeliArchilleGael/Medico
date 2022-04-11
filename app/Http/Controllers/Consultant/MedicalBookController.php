@@ -109,20 +109,94 @@ class MedicalBookController extends Controller
     //overite to return the form for creating a new consultation
     public function edit($id)
     {
-        $patient = Patient::where('id', $id)->firstOrFail();
-        return view('backend.consultants.medical-book.edit', compact('patient'));
+        $doctors = Doctor::latest()->get();
+        $consultation = Consultation::where('id', $id)
+            ->with(['patient', 'observations', 'prescribedExams', 'prescribedDrugs'])
+            ->first();
+
+        $array = [];
+        foreach ($consultation['observations'] as $key=>$observation){
+            $array[$key] = $observation->observation;
+        }
+        $observations = json_encode($array);
+
+        $array = [];
+        foreach ($consultation['prescribedExams'] as $key=>$exam){
+            $array[$key] = $exam->name;
+        }
+        $exams = json_encode($array);
+
+        $array = [];
+        foreach ($consultation['prescribedDrugs'] as $key=>$drug){
+            $array[$key] = $drug->name;
+        }
+        $drugs = json_encode($array);
+
+        return view('backend.consultants.medical-book.edit', compact('consultation','observations', 'doctors', 'exams', 'drugs'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, int $id)
     {
         //
+        $consultation = Consultation::where('id',$id)->firstOrFail();
+
+        $consultation->update(array_merge($request->only('name'), [
+            'patient_id'=>$request->input('patient'),
+            'done_by'=> Auth::user()->name,
+            'role_prescriber'=>'Consultant',
+            'doctor_id'=>isset($request->doctor) ? $request->doctor : 1,
+        ]));
+
+        //save  drugs of the consultation
+        if ($request->has('drugs')) {
+            foreach($consultation->prescribedDrugs as $drug){
+                $drug->delete();
+            }
+            $drugs = json_decode($request->input('drugs'));
+            foreach ($drugs as $drug) {
+                PrescribedDrug::create([
+                    'name'=>$drug,
+                    'consultation_id'=>$consultation->id
+                ]);
+            }
+        }
+
+        //save exams of the consultation
+        if ($request->has('exams')) {
+            foreach($consultation->prescribedExams as $exam){
+                $exam->delete();
+            }
+            $exams = json_decode($request->input('exams'));
+            foreach ($exams as $exam) {
+                PrescribedExam::create([
+                    'name'=>$exam,
+                    'consultation_id'=>$consultation->id,
+                ]);
+            }
+        }
+
+        //save of the Observation
+        if ($request->has('observations')) {
+            $observations = json_decode($request->input('observations'));
+            foreach($consultation->observations as $observation){
+                $observation->delete();
+            }
+            foreach ($observations as $observation) {
+                Observation::create([
+                    'observation'=>$observation,
+                    'consultation_id'=>$consultation->id,
+                ]);
+            }
+        }
+
+        return redirect()->route('consultants.patients.show', $request->patient);
     }
 
     /**
