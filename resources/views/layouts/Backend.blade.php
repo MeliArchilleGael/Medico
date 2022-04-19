@@ -25,6 +25,19 @@
 @yield('top_sidebar')
 
 <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
+    @if(session()->has('message'))
+        {{--  @if(session()->has('type'))--}}
+        @if(session('type') == 'error')
+            <div class="alert alert-danger" role="alert">
+                {{ session()->get('message') }}
+            </div>
+        @else
+            <div class="alert alert-success" role="alert">
+                {{ session()->get('message') }}
+            </div>
+        @endif
+        {{-- @endif--}}
+    @endif
     @yield('content')
 </div>    <!--/.main-->
 

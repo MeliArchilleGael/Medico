@@ -104,13 +104,13 @@
                     <em class="fa fa-plus"></em></span>
             </a>
             <ul class="children collapse" id="sub-item-2">
-                <li><a class="" href="#">
+                <li><a href="{{ route('auth.profile.index') }}">
                         <span class="fa fa-arrow-right">&nbsp;</span> Show
                     </a></li>
-                <li><a class="" href="#">
+                <li><a href="{{ route('auth.profile.edit') }}">
                         <span class="fa fa-arrow-right">&nbsp;</span> Edit
                     </a></li>
-                <li><a class="" href="#">
+                <li><a href="{{ route('auth.profile.password') }}">
                         <span class="fa fa-arrow-right">&nbsp;</span> Change Password
                     </a></li>
             </ul>
