@@ -20,9 +20,10 @@ class ProfileController extends Controller
 
     public function store(Request $request) {
 
+
         $path = '';
         if ($request->hasFile('profile')) {
-            $path = $request->file('profile')->store('/profile');
+            $path = $request->file('profile')->store('/profile', 'public');
         }
 
         Auth::user()->update(array_merge([
@@ -31,6 +32,7 @@ class ProfileController extends Controller
                 'profile' => $path,
             ]
         ]));
+
         return redirect()->route('auth.profile.index')
             ->with('message', 'Profile Update successfully')
             ->with('type', 'success');

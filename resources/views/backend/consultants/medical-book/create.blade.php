@@ -17,39 +17,25 @@
                                 <h1 class="h4 text-gray-900 mb-4">{{ __('Register a New Consultation of the patient: ') }} {{ $patient->name }}</h1>
                             </div>
 
-                            <form class="user" action="{{route('consultants.medical-book.store')}}" method="POST" >
+                            <form class="user" action="{{route('consultants.medical-book.store')}}" method="POST">
                                 @csrf
-                                <input type="hidden" name="patient" value="{{ $patient->id }}" >
+                                <input type="hidden" name="patient" value="{{ $patient->id }}">
                                 <div class="form-group row">
                                     <div class="col-sm-12 col-md-6 mb-3 mb-sm-0">
-                                        <label for="exampleFirstName">{{ __('Name') }}</label><span style="color:red">*</span>
+                                        <label for="exampleFirstName">{{ __('Name') }}</label><span
+                                            style="color:red">*</span>
                                         <input type="text"
                                                class="form-control form-control-user @error('name')is-invalid @enderror"
                                                id="exampleFirstName"
                                                value="{{ old('name') }}"
                                                placeholder="{{ __('Enter your name here') }}" name="name">
                                         @error('name')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                    </div>
-                                    <div class="col-sm-12 col-md-6 mb-3 mb-sm-0">
-                                        <label for="doctor">{{ __('Doctor (Optional)') }}</label>
-                                        <select class="form-control form-control-user @error('doctor')is-invalid @enderror"
-                                                name="doctor" id="doctor"
-                                        >
-                                            <option value=""> Select the doctor for this patient </option>
-                                            @foreach($doctors as $doctor)
-                                                <option value="{{ $doctor->id }}"> {{ $doctor->name }} </option>
-                                            @endforeach
-                                        </select>
-                                        @error('doctor')
                                         <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>
                                         @enderror
                                     </div>
+
 
                                 </div>
                                 <div class="form-group">
@@ -63,7 +49,9 @@
 
                                         <div class="feature_form">
                                             <label for="observation"></label>
-                                            <textarea id="observation" class="form-control" placeholder="Enter Observation Here" name="" cols="30" rows="5"></textarea>
+                                            <textarea id="observation" class="form-control"
+                                                      placeholder="Enter Observation Here" name="" cols="30"
+                                                      rows="5"></textarea>
 
                                             <button
                                                 class="btn btn-primary btn-circle ml-2"
@@ -75,9 +63,23 @@
                                     </fieldset>
                                 </div>
 
-                                <div class="form-group">
+                                <div class="form-group center-content gap-5">
+                                    <div>
+                                        <input class="form-check-input" name="inlineRadioOptions" type="radio"
+                                               id="inlineRadio1" value="1" onclick="selectThis(this.value)">
+                                        <label class="form-check-label" for="inlineRadio1">Prescribe an exam</label>
+                                    </div>
+
+                                    <div>
+                                        <input class="form-check-input" type="radio" name="inlineRadioOptions"
+                                               id="inlineRadio2" value="2" onclick="selectThis(this.value)">
+                                        <label class="form-check-label" for="inlineRadio2">Prescribe a drug</label>
+                                    </div>
+                                </div>
+
+                                <div id="exam_section" class="form-group hidden">
                                     <fieldset>
-                                        <legend>Exams prescribed for this consultation</legend>
+                                        <legend>Prescribed an exam for this consultation</legend>
                                         <label for="exams">{{ __('List of Exams') }}</label>
                                         <input type="hidden" id="exams" name="exams" value='[]'>
 
@@ -86,7 +88,8 @@
 
                                         <div class="feature_form">
                                             <label for="exam"></label>
-                                            <textarea id="exam" class="form-control" placeholder="Enter Exam Here" name="" cols="30" rows="5"></textarea>
+                                            <textarea id="exam" class="form-control" placeholder="Enter Exam Here"
+                                                      name="" cols="30" rows="5"></textarea>
 
                                             <button
                                                 class="btn btn-primary btn-circle ml-2"
@@ -95,12 +98,30 @@
                                             >Add
                                             </button>
                                         </div>
+
+                                        <div class="col-sm-12 col-md-6 mb-3 mb-sm-0">
+                                            <label for="doctor">{{ __('Doctor (Optional)') }}</label>
+                                            <select
+                                                class="form-control form-control-user @error('doctor')is-invalid @enderror"
+                                                name="doctor" id="doctor"
+                                            >
+                                                <option value=""> Select the doctor for this exam</option>
+                                                @foreach($doctors as $doctor)
+                                                    <option value="{{ $doctor->id }}"> {{ $doctor->name }} </option>
+                                                @endforeach
+                                            </select>
+                                            @error('doctor')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
+                                        </div>
                                     </fieldset>
                                 </div>
 
-                                <div class="form-group">
+                                <div id="drug_section" class="form-group hidden">
                                     <fieldset>
-                                        <legend>Drugs prescribed for this consultation</legend>
+                                        <legend>Prescribed a Drugs for this consultation</legend>
                                         <label for="drugs">{{ __('List of drugs') }}</label>
                                         <input type="hidden" id="drugs" name="drugs" value='[]'>
 
@@ -109,7 +130,8 @@
 
                                         <div class="feature_form">
                                             <label for="drug"></label>
-                                            <textarea id="drug" class="form-control" placeholder="Enter drug Here" name="" cols="30" rows="5"></textarea>
+                                            <textarea id="drug" class="form-control" placeholder="Enter the name and Dosage of the drug"
+                                                      name="" cols="30" rows="5"></textarea>
 
                                             <button
                                                 class="btn btn-primary btn-circle ml-2"
@@ -134,4 +156,19 @@
             </div>
         </div>
     </div>
+@endsection
+@section('script')
+    <script>
+        function selectThis(type){
+            let exam_section = document.getElementById('exam_section');
+            let drug_section = document.getElementById('drug_section');
+            if(type==="1"){
+                exam_section.style.display='block';
+                drug_section.style.display='none';
+            }else{
+                drug_section.style.display =  'block';
+                exam_section.style.display =  'none';
+            }
+        }
+    </script>
 @endsection

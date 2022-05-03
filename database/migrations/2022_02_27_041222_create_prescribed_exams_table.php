@@ -20,6 +20,7 @@ class CreatePrescribedExamsTable extends Migration
             $table->string('result')->nullable();
             $table->longText('observation')->nullable();
             $table->foreignId('consultation_id')->constrained('consultations');
+            $table->foreignId('doctor_id')->nullable()->constrained('doctors');
             $table->timestamps();
         });
     }

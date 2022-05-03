@@ -69,6 +69,7 @@ class MedicalBookController extends Controller
             foreach ($exams as $exam) {
                 PrescribedExam::create([
                     'name'=>$exam,
+                    'doctor_id'=>$request->input('doctor_id'),
                     'consultation_id'=>$consultation->id,
                 ]);
             }

@@ -1,13 +1,11 @@
-/**
-* Template Name: Medicio - v4.7.0
-* Template URL: https://bootstrapmade.com/medicio-free-bootstrap-theme/
-* Author: BootstrapMade.com
-* License: https://bootstrapmade.com/license/
-*/
-
-/*--------------------------------------------------------------
-# General
---------------------------------------------------------------*/
+.between-content {
+    display: flex;
+    justify-content: space-between;
+}
+.center-content {
+    display: flex;
+    justify-content: center;
+}
 body {
   font-family: "Open Sans", sans-serif;
   color: #444444;
@@ -194,7 +192,7 @@ h1, h2, h3, h4, h5, h6 {
 # Navigation Menu
 --------------------------------------------------------------*/
 /**
-* Desktop Navigation 
+* Desktop Navigation
 */
 .navbar {
   padding: 0;
@@ -284,7 +282,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /**
-* Mobile Navigation 
+* Mobile Navigation
 */
 .mobile-nav-toggle {
   color: #555555;

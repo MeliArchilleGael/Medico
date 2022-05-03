@@ -25,9 +25,9 @@ Route::group([
     function (){
         Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'index'])->name('index');
         Route::get('profile/edit', [App\Http\Controllers\ProfileController::class, 'edit'])->name('edit');
-        Route::post('profile/store', [App\Http\Controllers\ProfileController::class, 'store'])->name('store');
+        Route::post('profile/store', [App\Http\Controllers\ProfileController::class, 'store'])->name('update');
         Route::get('profile/password', [App\Http\Controllers\ProfileController::class, 'password'])->name('password');
-        Route::post('profile/password/update', [App\Http\Controllers\ProfileController::class, 'update'])->name('update');
+        Route::post('profile/password/update', [App\Http\Controllers\ProfileController::class, 'update'])->name('updatePassword');
     }
 );
 

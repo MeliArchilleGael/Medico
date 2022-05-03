@@ -38,7 +38,7 @@ class PatientController extends Controller
             'name' => 'required',
             'address' => 'required',
             'telephone' => 'required',
-            'date_of_birth' => 'required|date',
+            /*'date_of_birth' => 'required|date',*/
             /*'weight'=>'numeric',
             'height'=>'numeric',*/
         ]);
