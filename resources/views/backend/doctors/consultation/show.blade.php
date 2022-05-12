@@ -125,7 +125,6 @@
                             <li>Date: {{ $consultation->date_consultation }}</li>
                             <li>Done by the : {{ $consultation->role_prescrisber }}: {{ $consultation->done_by }}</li>
                             <li>Status: {{ $consultation->status }} </li>
-                            <li>Doctor: {{ $consultation->doctor->name }} </li>
                         </ul>
                         <hr>
                         <strong> {{ __('Observation') }} </strong>

@@ -1,7 +1,7 @@
 @extends('layouts.Backend')
 
 @section('top_sidebar')
-    @include('layouts.includes.ConsultantTopBar')
+    @include('layouts.includes.DoctorTopBar')
 @endsection
 
 @section('content')
@@ -10,11 +10,8 @@
         <div class="card-header py-3">
             <div class="content-between p-1">
                 <div class="fw-bolder text-center text-primary">
-                    <span style="font-size:20px">{{ 'List of Consultations of the patient:' }} {{ $patient->name }}</span>
+                    <span style="font-size:20px">{{ 'List of Consultations of the Doctor:' }} {{ Auth::user()->name }}</span>
                 </div>
-                <a href="{{ route('consultants.consultation.create', $patient) }}" class="btn btn-primary btn-circle">
-                    <i class="fa fa-plus"></i>
-                </a>
             </div>
         </div>
         <div class="card-body">
@@ -42,7 +39,7 @@
                     </tr>
                     </tfoot>
                     <tbody>
-                    @foreach($patient['consultations'] as $key=>$consultation)
+                    @foreach($consultations as $key=>$consultation)
                         <tr class="hover:bg-gray-50 text-center">
                             <td class="align-middle">
                                 {{ $key+1 }}
@@ -62,7 +59,7 @@
                                    class="btn btn-warning">
                                     <i class="fa fa-eye"></i>
                                 </a>
-                                <a href="{{ route('consultants.medical-book.edit', $consultation) }}"
+                                <a href="{{ route('doctors.consultation.edit', $consultation) }}"
                                    class="btn btn-primary">
                                     <i class="fa fa-pencil"></i>
                                 </a>
@@ -80,7 +77,7 @@
     </div>
 
     <!-- delete Modal-->
-    @foreach($patient['consultations']  as $key=>$consultation)
+    @foreach($consultations  as $key=>$consultation)
         <div class="modal fade" id="{{ 'deleteModal'.$key }}" tabindex="-1" role="dialog"
              aria-labelledby="exampleModalLabel"
              aria-hidden="true">
@@ -92,7 +89,7 @@
                             <span aria-hidden="true">×</span>
                         </button>
                     </div>
-                    <div class="modal-body">{{ __('Delete Patient Consultation ') }}</div>
+                    <div class="modal-body">{{ __('Delete the Consultation ') }}</div>
                     <div class="modal-footer content-between">
                         <button class="btn btn-secondary" type="button"
                                 data-dismiss="modal">{{ __('Cancel') }}</button>
@@ -125,7 +122,6 @@
                             <li>Date: {{ $consultation->date_consultation }}</li>
                             <li>Done by the : {{ $consultation->role_prescrisber }}: {{ $consultation->done_by }}</li>
                             <li>Status: {{ $consultation->status }} </li>
-                            <li>Doctor: {{ $consultation->doctor->name }} </li>
                         </ul>
                         <hr>
                         <strong> {{ __('Observation') }} </strong>

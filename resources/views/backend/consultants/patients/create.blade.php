@@ -110,11 +110,14 @@
                                 <div class="form-group row">
                                     <div class="col-sm-12 col-md-6 mb-3 mb-sm-0">
                                         <label for="blood_group">{{ __('Blood Group') }}</label>
-                                        <input type="text"
-                                               class="form-control form-control-user @error('blood_group')is-invalid @enderror"
-                                               id="blood_group"
-                                               value="{{ old('blood_group') }}"
-                                               placeholder="{{ __('Enter your blood group here') }}" name="blood_group">
+                                        <select class="form-control form-control-user @error('blood_group')is-invalid @enderror" name="blood_group" id="blood_group">
+                                            <option value="O+">O+</option>
+                                            <option value="O-">O-</option>
+                                            <option value="A+">A+</option>
+                                            <option value="AB">AB</option>
+                                            <option value="B">B</option>
+                                        </select>
+
                                         @error('blood_group')
                                         <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>

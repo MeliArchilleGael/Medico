@@ -20,6 +20,12 @@ class Consultation extends Model
     {
         return $this->belongsTo(Patient::class);
     }
+
+    public function doctor()
+    {
+        return $this->belongsTo(Doctor::class);
+    }
+
     public function prescribedExams(){
         return $this->hasMany(PrescribedExam::class);
     }

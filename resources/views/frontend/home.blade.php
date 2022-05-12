@@ -15,8 +15,8 @@
                 <div class="carousel-item active"
                      style="background-image: url({{ asset('assets/frontend/img/slide/slide-1.jpg') }} )">
                     <div class="container">
-                        <h2>Welcome to <span>Medico</span></h2>
-                        <p>Medico is a follow up management system build by student of HTTTC bambili for fulfillment of
+                        <h2>Welcome to <span>Follow-UP</span></h2>
+                        <p>Follow-UP is a follow up management system build by student of HTTTC bambili for fulfillment of
                             DIPET I</p>
                         <a href="#about" class="btn-get-started scrollto">Read More</a>
                     </div>
@@ -64,18 +64,7 @@
 @section('content')
     <main id="main">
 
-        <!-- ======= Cta Section ======= -->
-        <section id="cta" class="cta">
-            <div class="container" data-aos="zoom-in">
 
-                <div class="text-center">
-                    <h3>In an emergency? Need help now?</h3>
-                    <p> Click and fill the form to make a quit appointment with one of ours thousand doctors</p>
-                    <a class="cta-btn scrollto" href="#appointment">Make an Appointment</a>
-                </div>
-
-            </div>
-        </section><!-- End Cta Section -->
         <main class="py-4">
             <div class="container">
                 <div class="row justify-content-center">

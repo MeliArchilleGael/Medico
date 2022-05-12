@@ -53,7 +53,7 @@
         <!--
                 <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt=""></a>
        Uncomment below if you prefer to use an image logo -->
-        <h1 class="logo me-auto"><a href="index.html">Medico</a></h1>
+        <h1 class="logo me-auto"><a href="index.html">Follow-UP</a></h1>
 
         <nav id="navbar" class="navbar order-last order-lg-0">
             <ul>
@@ -85,47 +85,17 @@
 <footer id="footer">
     <div class="footer-top">
         <div class="container">
-            <div class="row">
-
+            <div class="row text-center align-items-center justify-content-between">
                 <div class="col-lg-3 col-md-6">
                     <div class="footer-info">
-                        <h3>Medico</h3>
+                        <h3>Follow-up</h3>
                         <p>
                             Bamenda <br>
                             NORTH WEST, CAMEROON<br><br>
                             <strong>Phone:</strong> +237 652 450 890<br>
                             <strong>Email:</strong> info@example.com<br>
                         </p>
-                        <div class="social-links mt-3">
-                            <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
-                            <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
-                            <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
-                            <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
-                            <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
-                        </div>
                     </div>
-                </div>
-
-                <div class="col-lg-2 col-md-6 footer-links">
-                    <h4>Useful Links</h4>
-                    <ul>
-                        <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
-                        <li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
-                        <li><i class="bx bx-chevron-right"></i> <a href="#">Services</a></li>
-                        <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
-                        <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
-                    </ul>
-                </div>
-
-                <div class="col-lg-3 col-md-6 footer-links">
-                    <h4>Our Services</h4>
-                    <ul>
-                        <li><i class="bx bx-chevron-right"></i> <a href="#">Web Design</a></li>
-                        <li><i class="bx bx-chevron-right"></i> <a href="#">Web Development</a></li>
-                        <li><i class="bx bx-chevron-right"></i> <a href="#">Product Management</a></li>
-                        <li><i class="bx bx-chevron-right"></i> <a href="#">Marketing</a></li>
-                        <li><i class="bx bx-chevron-right"></i> <a href="#">Graphic Design</a></li>
-                    </ul>
                 </div>
 
                 <div class="col-lg-4 col-md-6 footer-newsletter">
@@ -143,7 +113,7 @@
 
     <div class="container">
         <div class="copyright">
-            &copy; Copyright <strong><span>Medico</span></strong>. All Rights Reserved
+            &copy; Copyright <strong><span>Follow-UP</span></strong>. All Rights Reserved
         </div>
     </div>
 </footer><!-- End Footer -->

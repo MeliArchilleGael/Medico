@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/',[App\Http\Controllers\FrontendController::class, 'index'])->name('home');
+Route::get('/home',[App\Http\Controllers\FrontendController::class, 'index']);
 Route::post('/appointment/store',[App\Http\Controllers\FrontendController::class, 'storeAppointment'])->name('appointment.store');
 Route::post('/message/store', [App\Http\Controllers\FrontendController::class, 'storeMessage'])->name('message.store');
 Auth::routes();
@@ -52,6 +53,9 @@ Route::group([
     'middleware' => ['auth:doctor']],
     function () {
         Route::get('/dashboard', [App\Http\Controllers\Doctors\DashboardController::class, 'index'])->name('dashboard');
+        Route::get('/doctors/patient', [App\Http\Controllers\Doctors\PatientController::class, 'patient'])->name('patients.index');
+        Route::resource('appointment', 'AppointmentController');
+        Route::resource('consultation', 'ConsultationController');
     });
 
 Route::group([
@@ -60,7 +64,7 @@ Route::group([
     'namespace' => 'App\Http\Controllers\Patient',
     'middleware' => ['auth:patient']],
     function () {
-        Route::get('/dashboard3', [App\Http\Controllers\Patients\DashboardController::class, 'index'])->name('dashboard');
+        Route::get('/dashboard', [App\Http\Controllers\Patients\DashboardController::class, 'index'])->name('dashboard');
     });
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
