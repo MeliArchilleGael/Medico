@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/',[App\Http\Controllers\FrontendController::class, 'index'])->name('home');
-Route::get('/home',[App\Http\Controllers\FrontendController::class, 'index']);
+Route::get('/login',[App\Http\Controllers\FrontendController::class, 'index']);
 Route::post('/appointment/store',[App\Http\Controllers\FrontendController::class, 'storeAppointment'])->name('appointment.store');
 Route::post('/message/store', [App\Http\Controllers\FrontendController::class, 'storeMessage'])->name('message.store');
 Auth::routes();
@@ -45,7 +45,6 @@ Route::group([
 
     });
 
-
 Route::group([
     'as' => 'doctors.',
     'prefix' => 'doctor',
@@ -67,4 +66,4 @@ Route::group([
         Route::get('/dashboard', [App\Http\Controllers\Patients\DashboardController::class, 'index'])->name('dashboard');
     });
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::get('/login', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

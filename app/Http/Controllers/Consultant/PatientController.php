@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Consultant;
 
 use App\Http\Controllers\Controller;
+use App\Models\Department;
 use App\Models\Patient;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -24,12 +25,13 @@ class PatientController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
     public function create()
     {
         //
-        return view('backend.consultants.patients.create');
+        $departments = Department::latest()->get();
+        return view('backend.consultants.patients.create', compact('departments'));
     }
 
     private function validation($request)
@@ -38,6 +40,7 @@ class PatientController extends Controller
             'name' => 'required',
             'address' => 'required',
             'telephone' => 'required',
+            'department_id' => 'required',
             /*'date_of_birth' => 'required|date',*/
             /*'weight'=>'numeric',
             'height'=>'numeric',*/
@@ -57,7 +60,7 @@ class PatientController extends Controller
 
         $email = $request->input('email');
 
-        $patient = Patient::create(array_merge($request->only(['name', 'blood_group', 'address', 'telephone', 'date_of_birth', 'height', 'weight']), [
+        $patient = Patient::create(array_merge($request->only(['name', 'blood_group', 'address', 'telephone', 'date_of_birth', 'height', 'weight','department_id']), [
             'email' => isset($email) ? $email : $request->input('name') . '@medico.com',
             'password' => Hash::make('password'),
         ]));

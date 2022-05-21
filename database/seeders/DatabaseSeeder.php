@@ -6,7 +6,6 @@ use App\Models\Doctor;
 use App\Models\Patient;
 use App\Models\User;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
@@ -33,6 +32,7 @@ class DatabaseSeeder extends Seeder
             'telephone' => '+237 658 951 548',
             'password' => Hash::make('password'),
             'email' => 'patient@medico.com',
+            'department_id'=>'2',
         ]);
 
         Doctor::create([
@@ -41,9 +41,21 @@ class DatabaseSeeder extends Seeder
             'date_of_birth'=>'20/01/1997',
             'telephone' => '+237 658 951 548',
             'password' => Hash::make('password'),
+            'email' => 'doctor2@medico.com',
+            'speciality'=>'1',
+        ]);
+
+        Doctor::create([
+            'name' => 'Dev Doctor 2',
+            'address' => 'Bamenda',
+            'date_of_birth'=>'20/01/1997',
+            'telephone' => '+237 698 951 548',
+            'password' => Hash::make('password'),
             'email' => 'doctor@medico.com',
+            'speciality'=>'2',
         ]);
 
         $this->call(ConsultationSeed::class);
+        $this->call(DepartmentSeed::class);
     }
 }

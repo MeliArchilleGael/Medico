@@ -144,6 +144,16 @@
                         <ul class="list-unstyled ml-3">
                             <li>{{ $patient->date_of_birth }}</li>
                         </ul>
+                        <hr>
+                        {{ __('Weight') }} :
+                        <ul class="list-unstyled ml-3">
+                            <li>{{ $patient->weight }} Kg</li>
+                        </ul>
+                        <hr>
+                        {{ __('Height') }} :
+                        <ul class="list-unstyled ml-3">
+                            <li>{{ $patient->height }} Cm</li>
+                        </ul>
 
                     </div>
                     <div class="modal-footer">

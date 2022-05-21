@@ -13,7 +13,7 @@
 
                 <!-- Slide 1 -->
                 <div class="carousel-item active"
-                     style="background-image: url({{ asset('assets/frontend/img/slide/slide-1.jpg') }} )">
+                     style="background-image: url({{ asset('images/1.jpg') }} )">
                     <div class="container">
                         <h2>Welcome to <span>Follow-UP</span></h2>
                         <p>Follow-UP is a follow up management system build by student of HTTTC bambili for fulfillment of
@@ -24,7 +24,7 @@
 
                 <!-- Slide 2 -->
                 <div class="carousel-item"
-                     style="background-image: url({{ asset('assets/frontend/img/slide/slide-2.jpg') }})">
+                     style="background-image: url({{ asset('images/2.jpg') }})">
                     <div class="container">
                         <h2>Why this system</h2>
                         <p>The main target of this project is to minimize time spend in hospital by patient.</p>
@@ -34,7 +34,7 @@
 
                 <!-- Slide 3 -->
                 <div class="carousel-item"
-                     style="background-image: url({{ asset('assets/frontend/img/slide/slide-3.jpg') }})">
+                     style="background-image: url({{ asset('images/3.jpg') }})">
                     <div class="container">
                         <h2>Feature of this project:</h2>
 
@@ -96,7 +96,7 @@
 
                 <div class="row">
                     <div class="col-lg-6" data-aos="fade-right">
-                        <img src="{{ asset('assets/frontend/img/about.jpg') }}" class="img-fluid" alt="">
+                        <img src="{{ asset('images/3.jpg') }}" class="img-fluid" alt="">
                     </div>
                     <div class="col-lg-6 pt-4 pt-lg-0 content" data-aos="fade-left">
                         <h3 class="text-center">HTTTC BAMBILI</h3>
@@ -357,7 +357,7 @@
             </div>
         </section><!-- End Departments Section -->
 
-        <!-- ======= Doctors Section ======= -->
+       {{-- <!-- ======= Doctors Section ======= -->
         <section id="doctors" class="doctors section-bg">
             <div class="container" data-aos="fade-up">
 
@@ -447,7 +447,7 @@
                 </div>
 
             </div>
-        </section><!-- End Doctors Section -->
+        </section><!-- End Doctors Section -->--}}
 
         <!-- ======= Contact Section ======= -->
         <section id="contact" class="contact">

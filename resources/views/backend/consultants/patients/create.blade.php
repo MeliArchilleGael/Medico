@@ -22,14 +22,15 @@
                                 @csrf
                                 <div class="form-group row">
                                     <div class="col-sm-12 col-md-6 mb-3 mb-sm-0">
-                                        <label for="exampleFirstName">{{ __('Name') }}</label><span style="color:red">*</span>
+                                        <label for="exampleFirstName">{{ __('Name') }}</label><span
+                                            style="color:red">*</span>
                                         <input type="text"
                                                class="form-control form-control-user @error('name')is-invalid @enderror"
                                                id="exampleFirstName"
                                                value="{{ old('name') }}"
                                                placeholder="{{ __('Enter your name here') }}" name="name">
                                         @error('name')
-                                            <span class="invalid-feedback" role="alert">
+                                        <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>
                                         @enderror
@@ -51,14 +52,16 @@
 
                                 <div class="form-group row">
                                     <div class="col-sm-12 col-md-6 mb-3 mb-sm-0">
-                                        <label for="telephone">{{ __('Telephone') }}</label><span style="color:red">*</span>
+                                        <label for="telephone">{{ __('Telephone') }}</label><span
+                                            style="color:red">*</span>
                                         <input type="text"
                                                class="form-control form-control-user @error('telephone')is-invalid @enderror"
                                                id="telephone"
                                                value="{{ old('telephone') }}"
-                                               placeholder="{{ __('Enter your telephone number here') }}" name="telephone">
+                                               placeholder="{{ __('Enter your telephone number here') }}"
+                                               name="telephone">
                                         @error('telephone')
-                                            <span class="invalid-feedback" role="alert">
+                                        <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>
                                         @enderror
@@ -68,8 +71,7 @@
                                         <input type="email"
                                                class="form-control form-control-user @error('email')is-invalid @enderror"
                                                id="email"
-                                               value="{{ 'patient@medico.com' }}"
-                                               placeholder="{{ __('Enter your email here') }}" name="email">
+                                               placeholder="generate automatically or enter example: name@medico.con" name="email">
                                         @error('email')
                                         <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -93,14 +95,14 @@
                                         @enderror
                                     </div>
                                     <div class="col-sm-12 col-md-6 mb-3 mb-sm-0">
-                                        <label for="height">{{ __('Height (m) ') }}</label>
+                                        <label for="height">{{ __('Height (cm) ') }}</label>
                                         <input type="number"
                                                class="form-control form-control-user @error('height')is-invalid @enderror"
                                                id="height"
                                                value="{{ old('height') }}"
                                                placeholder="{{ __('Enter your height here') }}" name="height">
                                         @error('height')
-                                            <span class="invalid-feedback" role="alert">
+                                        <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>
                                         @enderror
@@ -110,7 +112,9 @@
                                 <div class="form-group row">
                                     <div class="col-sm-12 col-md-6 mb-3 mb-sm-0">
                                         <label for="blood_group">{{ __('Blood Group') }}</label>
-                                        <select class="form-control form-control-user @error('blood_group')is-invalid @enderror" name="blood_group" id="blood_group">
+                                        <select
+                                            class="form-control form-control-user @error('blood_group')is-invalid @enderror"
+                                            name="blood_group" id="blood_group">
                                             <option value="O+">O+</option>
                                             <option value="O-">O-</option>
                                             <option value="A+">A+</option>
@@ -125,13 +129,34 @@
                                         @enderror
                                     </div>
                                     <div class="col-sm-12 col-md-6 mb-3 mb-sm-0">
-                                        <label for="date_of_birth">{{ __('Date of birth') }}</label><span style="color:red">*</span>
+                                        <label for="date_of_birth">{{ __('Date of birth') }}</label><span
+                                            style="color:red">*</span>
                                         <input type="date"
                                                class="form-control form-control-user @error('date_of_birth')is-invalid @enderror"
                                                id="date_of_birth"
                                                value="{{ old('date_of_birth') }}"
-                                               placeholder="{{ __('Enter your Date of birth here') }}" name="date_of_birth">
+                                               placeholder="{{ __('Enter your Date of birth here') }}"
+                                               name="date_of_birth">
                                         @error('date_of_birth')
+                                        <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-12 col-md-6 mb-3 mb-sm-0">
+                                        <label for="department">{{ __('Select a department for the Patient') }}</label>
+                                        <select
+                                            class="form-control form-control-user @error('blood_group')is-invalid @enderror"
+                                            name="department_id" id="department">
+                                            <option disabled selected value="">Select One ...</option>
+                                            @foreach($departments as $department)
+                                                <option value="{{ $department->id }}">{{ $department->name }}</option>
+                                            @endforeach
+                                        </select>
+
+                                        @error('department_id')
                                         <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>
