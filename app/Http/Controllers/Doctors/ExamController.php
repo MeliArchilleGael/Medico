@@ -28,6 +28,8 @@ class ExamController extends Controller
         $consultation->status = 'Done';
         $consultation->save();
 
-        return redirect()->route('doctors.consultation.index');
+        return redirect()->route('doctors.consultation.index')
+            ->with('message', 'Result of the exam register successfully')
+            ->with('type', 'success');
     }
 }

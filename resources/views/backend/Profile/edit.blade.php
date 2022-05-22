@@ -2,9 +2,15 @@
 
 @section('title','User information')
 
-{{--@section('sidebar')
-    @include('layouts.includes.ConsultantTopBar')
-@endsection--}}
+@section('top_sidebar')
+    @if(Auth::guard('user')->check())
+        @include('layouts.includes.ConsultantTopBar')
+    @elseif(Auth::guard('doctor')->check())
+        @include('layouts.includes.DoctorTopBar')
+    @else
+        @include('layouts.includes.PatientTopBar')
+    @endif
+@endsection
 
 @section('content')
     <div class="container">
@@ -44,7 +50,7 @@
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                         <label for="telephone">Telephone</label>
                                         <input type="text" name="telephone" @error('telephone')is-invalid @enderror class="form-control form-control-user" id="telephone"
-                                               value="{{ Auth::user()->telephone }}" placeholder="Telephone">
+                                               value="{{ Auth::user()->Telephone }}" placeholder="Telephone">
                                     </div>
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                         <label for="profile_url"> Profile Image </label>

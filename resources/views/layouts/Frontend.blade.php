@@ -72,15 +72,13 @@
     </div>
 </header><!-- End Header -->
 
-<div class="row">
+
     @yield('hero')
 
-    <div class="col-sm-8 col-lg-9" id="main">
-
+    <div id="main">
         @yield('content')
-
     </div>
-</div>
+
 
 <!-- ======= Footer ======= -->
 <footer id="footer">

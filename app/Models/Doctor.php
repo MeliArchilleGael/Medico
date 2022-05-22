@@ -13,6 +13,7 @@ class Doctor extends Authenticatable
         'password',
         'remember_token',
     ];
+    protected $guarded = [];
 
     public function appointments(){
         return $this->hasMany(Appointment::class);

@@ -1,9 +1,13 @@
 @extends('layouts.Backend')
 
 @section('top_sidebar')
-
+    @if(Auth::guard('user')->check())
         @include('layouts.includes.ConsultantTopBar')
-
+    @elseif(Auth::guard('doctor')->check())
+        @include('layouts.includes.DoctorTopBar')
+    @else
+        @include('layouts.includes.PatientTopBar')
+    @endif
 @endsection
 
 @section('content')
@@ -21,8 +25,8 @@
                             <hr>
                             <div class="row">
                                 <div class="col-lg-5 col-md-5">
-                                    @if(isset(Auth::user()->profile_url))
-                                        <img width="200px" height="200px" src="{{ asset(Auth::user()->profile_url) }}" alt="">
+                                    @if(isset(Auth::user()->profile))
+                                        <img width="100%" src="{{ asset('storage/'.Auth::user()->profile) }}" alt="">
                                     @else
                                         No Profile Picture
                                     @endif
@@ -38,7 +42,7 @@
                                     </div>
                                     <hr>
                                     <div class="p-1">Telephone
-                                        : {{ Auth::user()->telephone }}
+                                        : {{ Auth::user()->Telephone }}
                                     </div>
                                     <hr>
                                     <div class="p-1">Address

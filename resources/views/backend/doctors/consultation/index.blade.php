@@ -45,7 +45,7 @@
                                 {{ $key+1 }}
                             </td>
                             <td class="align-middle"> {{ $consultation->name }} </td>
-                            <td class="align-middle"> {{ $consultation->done_by }} </td>
+                            <td class="align-middle"> {{ $consultation->prescribeBy->name }} </td>
                             @if($consultation->status==='Not Done')
                                 <td class="align-middle"><span
                                         class="badge badge-danger">{{ $consultation->status }}</span></td>

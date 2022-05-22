@@ -19,25 +19,43 @@
 	<![endif]-->
 
     <script defer src="{{ asset('js/script.js') }}" ></script>
+
+    <style>
+        .content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 2rem;
+        }
+        .alert {
+            width: 50%;
+            text-align: center;
+            font-size: 15px;
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
 
 @yield('top_sidebar')
 
 <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
-    @if(session()->has('message'))
-        {{--  @if(session()->has('type'))--}}
-        @if(session('type') == 'error')
-            <div class="alert alert-danger" role="alert">
-                {{ session()->get('message') }}
-            </div>
-        @else
-            <div class="alert alert-success" role="alert">
-                {{ session()->get('message') }}
-            </div>
+
+    <div class="content">
+        @if(session()->has('message'))
+            {{--  @if(session()->has('type'))--}}
+            @if(session('type') == 'error')
+                <div class="alert alert-danger" role="alert">
+                    {{ session()->get('message') }}
+                </div>
+            @else
+                <div class="alert alert-success" role="alert">
+                    {{ session()->get('message') }}
+                </div>
+            @endif
+            {{-- @endif--}}
         @endif
-        {{-- @endif--}}
-    @endif
+    </div>
     @yield('content')
 </div>    <!--/.main-->
 

@@ -46,7 +46,7 @@
                                 {{ $key+1 }}
                             </td>
                             <td class="align-middle"> {{ $exam->name }} </td>
-                            <td class="align-middle"> {{ $consultation->prescribeBy }} </td>
+                            <td class="align-middle"> {{ $consultation->prescribeBy->name }} </td>
                             <td class="align-middle">
                                 @foreach($consultation->observations as $observation)
                                     <li>{{ $observation->observation }}</li>

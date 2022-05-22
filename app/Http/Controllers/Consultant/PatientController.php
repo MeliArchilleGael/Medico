@@ -71,7 +71,9 @@ class PatientController extends Controller
         }
 
 
-        return redirect()->route('consultants.patients.index');
+        return redirect()->route('consultants.patients.index')
+            ->with('message', 'Patient create successfully Matriculate:'.$patient->matriculate )
+            ->with('type', 'success');
     }
 
     /**
@@ -122,7 +124,9 @@ class PatientController extends Controller
             'receive'=>false,
         ]));
 
-        return redirect()->route('consultants.patients.index');
+        return redirect()->route('consultants.patients.index')
+            ->with('message', 'Patient register successfully')
+            ->with('type', 'success');
     }
 
     /**

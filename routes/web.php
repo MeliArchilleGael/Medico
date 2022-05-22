@@ -22,7 +22,7 @@ Auth::routes();
 Route::group([
     'as' => 'auth.profile.',
     'prefix'=>'auth',
-    'middleware'=>['auth:user']],
+    'middleware'=>['auth:doctor,user,patient']],
     function (){
         Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'index'])->name('index');
         Route::get('profile/edit', [App\Http\Controllers\ProfileController::class, 'edit'])->name('edit');

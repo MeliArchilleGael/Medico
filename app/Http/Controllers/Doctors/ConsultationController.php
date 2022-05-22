@@ -119,7 +119,7 @@ class ConsultationController extends Controller
      *
      * @param \Illuminate\Http\Request $request
      * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, $id)
     {
@@ -175,7 +175,9 @@ class ConsultationController extends Controller
             }
         }
 
-        return redirect()->route('doctors.consultation.index');
+        return redirect()->route('doctors.consultation.index')
+            ->with('message', 'Consultation Update successfully')
+            ->with('type', 'success');
     }
 
     /**

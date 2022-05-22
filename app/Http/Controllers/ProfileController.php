@@ -26,12 +26,13 @@ class ProfileController extends Controller
             $path = $request->file('profile')->store('/profile', 'public');
         }
 
-        Auth::user()->update(array_merge([
-            $request->only('name', 'telephone', 'address'),
-            [
-                'profile' => $path,
-            ]
-        ]));
+        $user = Auth::user();
+        $user->name = $request->name;
+        $user->telephone = $request->telephone;
+        $user->address = $request->address;
+        $user->profile = $path;
+
+        $user->update();
 
         return redirect()->route('auth.profile.index')
             ->with('message', 'Profile Update successfully')
