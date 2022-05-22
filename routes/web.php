@@ -40,9 +40,6 @@ Route::group([
     function () {
         Route::get('/dashboard', [App\Http\Controllers\Consultant\DashboardController::class, 'index'])->name('dashboard');
         Route::resource('patients', PatientController::class);
-        Route::resource('medical-book', MedicalBookController::class)->except('create');
-        Route::get('consultation/create/{patient}', [App\Http\Controllers\Consultant\MedicalBookController::class, 'create'])->name('consultation.create');
-
     });
 
 Route::group([
@@ -54,7 +51,19 @@ Route::group([
         Route::get('/dashboard', [App\Http\Controllers\Doctors\DashboardController::class, 'index'])->name('dashboard');
         Route::get('/doctors/patient', [App\Http\Controllers\Doctors\PatientController::class, 'patient'])->name('patients.index');
         Route::resource('appointment', 'AppointmentController');
+
+        Route::get('consultation/done', [App\Http\Controllers\Doctors\ConsultationController::class, 'done'])->name('consultation.done');
+        Route::get('consultation/waiting', [App\Http\Controllers\Doctors\ConsultationController::class, 'waiting'])->name('consultation.waiting');
         Route::resource('consultation', 'ConsultationController');
+
+        Route::resource('medical-book', MedicalBookController::class)->except('create');
+        Route::get('consultation/create/{patient}', [App\Http\Controllers\Doctors\MedicalBookController::class, 'create'])->name('consultation.create');
+
+        Route::resource('exam', ExamController::class)->except(['create', 'index']);
+
+        Route::get('patient/department/all', [App\Http\Controllers\Doctors\DepartmentController::class, 'all'])->name('patient.all');
+        Route::get('patient/department/receive', [App\Http\Controllers\Doctors\DepartmentController::class, 'receive'])->name('patient.receive');
+        Route::get('patient/department/waiting', [App\Http\Controllers\Doctors\DepartmentController::class, 'waiting'])->name('patient.waiting');
     });
 
 Route::group([

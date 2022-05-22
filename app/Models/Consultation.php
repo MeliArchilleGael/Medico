@@ -10,27 +10,38 @@ class Consultation extends Model
     use HasFactory;
 
     protected $guarded = [];
-    public function observations(){
+
+    public function observations()
+    {
         return $this->hasMany(Observation::class);
     }
 
-    protected $with = ['prescribedExams','prescribedDrugs', 'observations'];
+    protected $with = ['prescribedExams', 'prescribedDrugs', 'observations'];
 
     public function patient()
     {
         return $this->belongsTo(Patient::class);
     }
 
+    //done by
     public function doctor()
     {
         return $this->belongsTo(Doctor::class);
     }
 
-    public function prescribedExams(){
+    //prescribe by
+    public function prescribeBy()
+    {
+        return $this->belongsTo(Doctor::class, 'done_by');
+    }
+
+    public function prescribedExams()
+    {
         return $this->hasMany(PrescribedExam::class);
     }
 
-    public function prescribedDrugs(){
+    public function prescribedDrugs()
+    {
         return $this->hasMany(PrescribedDrug::class);
     }
 }

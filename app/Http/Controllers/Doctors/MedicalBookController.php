@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Consultant;
+namespace App\Http\Controllers\Doctors;
 
 use App\Http\Controllers\Controller;
 use App\Models\Consultation;
@@ -27,13 +27,15 @@ class MedicalBookController extends Controller
     /**
      * Show the form for creating a new resource.
      *
+     *
+     * @param $patient
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
     public function create(Patient $patient)
     {
         //
         $doctors = Doctor::latest()->get();
-        return view('backend.consultants.medical-book.create', compact('patient','doctors'));
+        return view('backend.doctors.medical-book.create', compact('patient','doctors'));
     }
 
     /**
@@ -44,13 +46,18 @@ class MedicalBookController extends Controller
      */
     public function store(Request $request)
     {
+        $patient = Patient::where('id',$request->input('patient'))->firstOrFail();
         $consultation = Consultation::create(array_merge($request->only('name'), [
             'date_consultation'=>now(),
             'patient_id'=>$request->input('patient'),
-            'done_by'=> Auth::user()->name,
-            'role_prescriber'=>'Consultant',
+            'done_by'=> Auth::user()->id,
+            'role_prescriber'=>'Doctor',
             'doctor_id'=>isset($request->doctor) ? $request->doctor : 1,
         ]));
+
+        //update the status of the patient on the department
+        $patient->receive = true;
+        $patient->update();
 
         //save  drugs of the consultation
         if ($request->has('drugs')) {
@@ -86,7 +93,7 @@ class MedicalBookController extends Controller
             }
         }
 
-        return redirect()->route('consultants.patients.show', $request->patient);
+        return redirect()->route('doctors.patient.all', $request->patient);
     }
 
     /**

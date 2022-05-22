@@ -10,7 +10,7 @@
         <div class="card-header py-3">
             <div class="content-between p-1">
                 <div class="fw-bolder text-center text-primary">
-                    <span style="font-size:20px">{{ 'List of Consultations of the Doctor:' }} {{ Auth::user()->name }}</span>
+                    <span style="font-size:20px">{{ $title }} {{ Auth::user()->name }}</span>
                 </div>
             </div>
         </div>
@@ -24,8 +24,8 @@
                         <th class="text-center"> Name consultation</th>
                         <th class="text-center"> Prescribed By</th>
                         <th class="text-center"> Status</th>
-                        <th class="text-center"> Created At </th>
-                        <th class="text-center"> Operation </th>
+                        <th class="text-center"> Created At</th>
+                        <th class="text-center"> Operation</th>
                     </tr>
                     </thead>
                     <tfoot>
@@ -34,8 +34,8 @@
                         <th class="text-center"> Name consultation</th>
                         <th class="text-center"> Prescribed By</th>
                         <th class="text-center"> Status</th>
-                        <th class="text-center"> Created At </th>
-                        <th class="text-center"> Operation </th>
+                        <th class="text-center"> Created At</th>
+                        <th class="text-center"> Operation</th>
                     </tr>
                     </tfoot>
                     <tbody>
@@ -47,9 +47,11 @@
                             <td class="align-middle"> {{ $consultation->name }} </td>
                             <td class="align-middle"> {{ $consultation->done_by }} </td>
                             @if($consultation->status==='Not Done')
-                                <td class="align-middle"> <span class="badge badge-danger">{{ $consultation->status }}</span> </td>
+                                <td class="align-middle"><span
+                                        class="badge badge-danger">{{ $consultation->status }}</span></td>
                             @else
-                                <td class="align-middle"> <span class="badge bg-success">{{ $consultation->status }}</span> </td>
+                                <td class="align-middle"><span
+                                        class="badge bg-success">{{ $consultation->status }}</span></td>
                             @endif
 
                             <td class="align-middle"> {{ $consultation->date_consultation }} </td>
@@ -59,14 +61,17 @@
                                    class="btn btn-warning">
                                     <i class="fa fa-eye"></i>
                                 </a>
-                                <a href="{{ route('doctors.consultation.edit', $consultation) }}"
+                                {{--<a href="{{ route('doctors.consultation.edit', $consultation) }}"
                                    class="btn btn-primary">
                                     <i class="fa fa-pencil"></i>
-                                </a>
-                                {{--<a href="{{ route('consultants.medical-book.show', $patient) }}"
-                                   class="btn btn-info">
-                                    <i class="fa fa-folder-open"></i>
                                 </a>--}}
+                                @if($consultation->status==='Not Done')
+                                    <a href="{{ route('doctors.consultation.show', $consultation) }}"
+                                       class="btn btn-info">
+                                        <i class="fa fa-folder-open"></i>
+                                    </a>
+                                @endif
+
                             </td>
                         </tr>
                     @endforeach
@@ -78,38 +83,14 @@
 
     <!-- delete Modal-->
     @foreach($consultations  as $key=>$consultation)
-        <div class="modal fade" id="{{ 'deleteModal'.$key }}" tabindex="-1" role="dialog"
-             aria-labelledby="exampleModalLabel"
-             aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">{{ __('Are you sure thant you want to delete this ?') }}</h5>
-                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">×</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">{{ __('Delete the Consultation ') }}</div>
-                    <div class="modal-footer content-between">
-                        <button class="btn btn-secondary" type="button"
-                                data-dismiss="modal">{{ __('Cancel') }}</button>
-                        <form action="{{ route('consultants.medical-book.destroy', $consultation->id) }}" method="post">
-                            @method('DELETE')
-                            @csrf
-                            <button class="btn btn-danger" type="submit">{{ __('Delete') }}</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-
         <div class="modal fade" id="{{ 'showModal'.$key }}" tabindex="-1" role="dialog"
              aria-labelledby="exampleModalLabel"
              aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header align-content-center">
-                        <div class="modal-title" id="exampleModalLabel">{{ __('More about the Consultation of the client ') }}</div>
+                        <div class="modal-title"
+                             id="exampleModalLabel">{{ __('More about the Consultation of the client ') }}</div>
                         <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                             <span class="text-danger" aria-hidden="true">×</span>
                         </button>

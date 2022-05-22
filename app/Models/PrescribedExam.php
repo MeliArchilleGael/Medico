@@ -8,5 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class PrescribedExam extends Model
 {
     use HasFactory;
-    protected  $guarded = [];
+
+    protected $guarded = [];
+
+    public function consultation()
+    {
+        return $this->belongsTo(Consultation::class);
+    }
 }

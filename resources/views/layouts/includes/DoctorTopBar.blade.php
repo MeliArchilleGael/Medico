@@ -73,6 +73,31 @@
             </ul>
         </li>--}}
         <li class="parent ">
+            <a data-toggle="collapse" href="#sub-item-11">
+                <em class="fa fa-users">&nbsp;</em>
+                <span style="font-size: 14px">
+                    Department's Patients
+                </span>
+                <span data-toggle="collapse" href="#sub-item-11"
+                      class="icon pull-right">
+                    <em class="fa fa-plus"></em></span>
+            </a>
+            <ul class="children collapse" id="sub-item-11">
+                <li><a class="" href="{{ route('doctors.patient.all') }}">
+                        <span class="fa fa-arrow-right">&nbsp;</span> All
+                    </a>
+                </li>
+                <li><a class="" href="{{ route('doctors.patient.receive') }}">
+                        <span class="fa fa-arrow-right">&nbsp;</span> Receive
+                    </a>
+                </li>
+                <li><a class="" href="{{ route('doctors.patient.waiting') }}">
+                        <span class="fa fa-arrow-right">&nbsp;</span> Waiting
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li class="parent ">
             <a data-toggle="collapse" href="#sub-item-1">
                 <em class="fa fa-users">&nbsp;</em> Appointment
                 <span data-toggle="collapse" href="#sub-item-1"
@@ -88,14 +113,21 @@
         </li>
         <li class="parent ">
             <a data-toggle="collapse" href="#sub-item-123">
-                <em class="fa fa-folder-open">&nbsp;</em> Consultation
+                <em class="fa fa-folder-open">&nbsp;</em> My Consultation
                 <span data-toggle="collapse" href="#sub-item-1"
                       class="icon pull-right">
                     <em class="fa fa-plus"></em></span>
             </a>
             <ul class="children collapse" id="sub-item-123">
                 <li><a class="" href="{{ route('doctors.consultation.index') }}">
-                        <span class="fa fa-arrow-right">&nbsp;</span> List
+                        <span class="fa fa-arrow-right">&nbsp;</span> All
+                    </a>
+                </li>
+                <li><a class="" href="{{ route('doctors.consultation.waiting') }}">
+                        <span class="fa fa-arrow-right">&nbsp;</span> Not Done
+                    </a>
+                </li><li><a class="" href="{{ route('doctors.consultation.done') }}">
+                        <span class="fa fa-arrow-right">&nbsp;</span> Done
                     </a>
                 </li>
             </ul>

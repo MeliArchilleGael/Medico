@@ -60,10 +60,15 @@ class PatientController extends Controller
 
         $email = $request->input('email');
 
-        $patient = Patient::create(array_merge($request->only(['name', 'blood_group', 'address', 'telephone', 'date_of_birth', 'height', 'weight','department_id']), [
-            'email' => isset($email) ? $email : $request->input('name') . '@medico.com',
-            'password' => Hash::make('password'),
-        ]));
+        try {
+            $patient = Patient::create(array_merge($request->only(['name', 'blood_group', 'address', 'telephone', 'date_of_birth', 'height', 'weight','department_id']), [
+                'email' => isset($email) ? $email : \Str::slug($request->input('name')) . '@medico.com',
+                'password' => Hash::make('password'),
+                'matriculate'=>'22MED'.\Str::random(5),
+            ]));
+        }catch(\Exception $e){
+            return back()->with('message', 'An Error Occur: '.$e->getMessage());
+        }
 
 
         return redirect()->route('consultants.patients.index');
@@ -86,13 +91,14 @@ class PatientController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
     public function edit($id)
     {
         //
+        $departments = Department::latest()->get();
         $patient = Patient::where('id', $id)->firstOrFail();
-        return view('backend.consultants.patients.edit', compact('patient'));
+        return view('backend.consultants.patients.edit', compact('patient', 'departments'));
     }
 
     /**
@@ -110,9 +116,10 @@ class PatientController extends Controller
 
         $email = $request->input('email');
 
-        $patient->update(array_merge($request->only(['name', 'blood_group', 'address', 'telephone', 'date_of_birth', 'height', 'weight']), [
+        $patient->update(array_merge($request->only(['name', 'department_id', 'blood_group', 'address', 'telephone', 'date_of_birth', 'height', 'weight']), [
             'email' => isset($email) ? $email : $request->input('name') . '@medico.com',
             'password' => Hash::make('password'),
+            'receive'=>false,
         ]));
 
         return redirect()->route('consultants.patients.index');

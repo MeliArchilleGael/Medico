@@ -33,6 +33,7 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('password'),
             'email' => 'patient@medico.com',
             'department_id'=>'2',
+            'matriculate'=>'22MED2313',
         ]);
 
         Doctor::create([

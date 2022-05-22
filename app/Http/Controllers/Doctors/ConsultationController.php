@@ -16,14 +16,35 @@ class ConsultationController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
     public function index()
     {
         $consultations = Consultation::where('doctor_id', Auth::user()->id)
+                        ->latest()
                         ->get();
 
-        return view('backend.doctors.consultation.index', compact('consultations'));
+        $title="List of All Consultations of the Doctor: ";
+        return view('backend.doctors.consultation.index', compact('consultations', 'title'));
+    }
+
+    public function done(){
+        $consultations = Consultation::where('doctor_id', Auth::user()->id)
+            ->where('status', 'LIKE', 'Done')
+            ->latest()
+            ->get();
+        $title="List of All Consultations Done By the Doctor: ";
+        return view('backend.doctors.consultation.index', compact('consultations', 'title'));
+    }
+
+    public function waiting(){
+
+        $consultations = Consultation::where('doctor_id', Auth::user()->id)
+            ->where('status', 'LIKE', 'Not Done')
+            ->latest()
+            ->get();
+        $title="List of All Pending Consultations of the Doctor: ";
+        return view('backend.doctors.consultation.index', compact('consultations', 'title'));
     }
 
     /**
@@ -50,12 +71,13 @@ class ConsultationController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param int $id
-     * @return \Illuminate\Http\Response
+     * @param Consultation $consultation
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Consultation $consultation)
     {
         //
+        return view('backend.doctors.consultation.show', compact('consultation'));
     }
 
     /**

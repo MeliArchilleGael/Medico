@@ -126,6 +126,21 @@
                                             </span>
                                         @enderror
                                     </div>
+                                    <div class="col-sm-12 col-md-6 mb-3 mb-sm-0">
+                                        <label for="date_of_birth">{{ __('Date of birth') }}</label><span
+                                            style="color:red">*</span>
+                                        <input type="date"
+                                               class="form-control form-control-user @error('date_of_birth')is-invalid @enderror"
+                                               id="date_of_birth"
+                                               value="{{ old('date_of_birth') }}"
+                                               placeholder="{{ __('Enter your Date of birth here') }}"
+                                               name="date_of_birth">
+                                        @error('date_of_birth')
+                                        <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
                                     {{--<div class="col-sm-12 col-md-6 mb-3 mb-sm-0">
                                         <label for="date_of_birth">{{ __('Date of birth') }}</label><span style="color:red">*</span>
                                         <input type="date"

@@ -1,7 +1,7 @@
 @extends('layouts.Backend')
 
 @section('top_sidebar')
-    @include('layouts.includes.ConsultantTopBar')
+    @include('layouts.includes.DoctorTopBar')
 @endsection
 
 @section('content')
@@ -17,12 +17,12 @@
                                 <h1 class="h4 text-gray-900 mb-4">{{ __('Register a New Consultation of the patient: ') }} {{ $patient->name }}</h1>
                             </div>
 
-                            <form class="user" action="{{route('consultants.medical-book.store')}}" method="POST">
+                            <form class="user" action="{{route('doctors.medical-book.store')}}" method="POST">
                                 @csrf
                                 <input type="hidden" name="patient" value="{{ $patient->id }}">
                                 <div class="form-group row">
                                     <div class="col-sm-12 col-md-6 mb-3 mb-sm-0">
-                                        <label for="exampleFirstName">{{ __('Name') }}</label><span
+                                        <label for="exampleFirstName">{{ __('Consultation Name') }}</label><span
                                             style="color:red">*</span>
                                         <input type="text"
                                                class="form-control form-control-user @error('name')is-invalid @enderror"

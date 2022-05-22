@@ -1,7 +1,7 @@
 @extends('layouts.Backend')
 
 @section('top_sidebar')
-    @include('layouts.includes.ConsultantTopBar')
+    @include('layouts.includes.DoctorTopBar')
 @endsection
 
 @section('content')

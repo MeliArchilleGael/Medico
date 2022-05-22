@@ -19,7 +19,7 @@ class ConsultationSeed extends Seeder
     {
         //
         Consultation::create([
-            'done_by'=>'Dev user',
+            'done_by'=>'2',
             'role_prescriber'=>'Consultant',
             'name'=>'Consultation des yeux',
             'status' => 'Done',
@@ -52,7 +52,7 @@ class ConsultationSeed extends Seeder
 
 
         Consultation::create([
-            'done_by'=>'Dev user',
+            'done_by'=>'1',
             'role_prescriber'=>'Consultant',
             'name'=>'Scan du cerveaux',
             'status' => 'Not Done',

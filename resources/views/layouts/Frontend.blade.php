@@ -53,14 +53,13 @@
         <!--
                 <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt=""></a>
        Uncomment below if you prefer to use an image logo -->
-        <h1 class="logo me-auto"><a href="index.html">Follow-UP</a></h1>
+        <h1 class="logo me-auto"><a href="{{ route('home') }}">Follow-UP</a></h1>
 
         <nav id="navbar" class="navbar order-last order-lg-0">
             <ul>
                 <li><a class="nav-link scrollto " href="#hero">Home</a></li>
                 <li><a class="nav-link scrollto" href="#about">About</a></li>
                 <li><a class="nav-link scrollto" href="#departments">Departments</a></li>
-                <li><a class="nav-link scrollto" href="#doctors">Doctors</a></li>
                 <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
                 <li><a class="nav-link scrollto" href="#login">Login</a></li>
             </ul>
@@ -73,13 +72,15 @@
     </div>
 </header><!-- End Header -->
 
-@yield('hero')
+<div class="row">
+    @yield('hero')
 
-<main id="main">
+    <div class="col-sm-8 col-lg-9" id="main">
 
-    @yield('content')
+        @yield('content')
 
-</main><!-- End #main -->
+    </div>
+</div>
 
 <!-- ======= Footer ======= -->
 <footer id="footer">
