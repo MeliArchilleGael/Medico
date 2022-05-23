@@ -1,7 +1,7 @@
 @extends('layouts.Backend')
 
 @section('top_sidebar')
-    @include('layouts.includes.DoctorTopBar')
+    @include('layouts.includes.PatientTopBar')
 @endsection
 
 @section('content')
@@ -67,14 +67,14 @@
                                 {{--<a href="{{ route('doctors.consultation.edit', $consultation) }}"
                                    class="btn btn-primary">
                                     <i class="fa fa-pencil"></i>
-                                </a>--}}
+                                </a>
                                 @if($consultation->status==='Not Done')
                                     <a href="{{ route('doctors.consultation.show', $consultation) }}"
                                        class="btn btn-info">
                                         <i class="fa fa-folder-open"></i>
                                     </a>
                                 @endif
-
+                                --}}
                             </td>
                         </tr>
                     @endforeach

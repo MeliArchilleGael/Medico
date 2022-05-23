@@ -6,7 +6,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span></button>
-            <a class="navbar-brand" href="#"><span>Consultants</span> Dashboard</a>
+            <a class="navbar-brand" href="#"><span>Patient</span> Dashboard</a>
             <ul class="nav navbar-top-links navbar-right">
                 <li class="dropdown"><a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
                         <em class="fa fa-envelope"></em><span class="label label-danger">{{ $messages->count() }}</span>
@@ -32,28 +32,6 @@
                         </li>
                     </ul>
                 </li>
-                {{--
-                <li class="dropdown">
-                    <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
-                        <em class="fa fa-bell"></em><span class="label label-info">5</span>
-                    </a>
-                    <ul class="dropdown-menu dropdown-alerts">
-                        <li><a href="#">
-                                <div><em class="fa fa-envelope"></em> 1 New Message
-                                    <span class="pull-right text-muted small">3 mins ago</span></div>
-                            </a></li>
-                        <li class="divider"></li>
-                        <li><a href="#">
-                                <div><em class="fa fa-heart"></em> 12 New Likes
-                                    <span class="pull-right text-muted small">4 mins ago</span></div>
-                            </a></li>
-                        <li class="divider"></li>
-                        <li><a href="#">
-                                <div><em class="fa fa-user"></em> 5 New Followers
-                                    <span class="pull-right text-muted small">4 mins ago</span></div>
-                            </a></li>
-                    </ul>
-                </li>--}}
             </ul>
         </div>
     </div><!-- /.container-fluid -->
@@ -62,7 +40,7 @@
 <div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
     <div class="profile-sidebar">
         <div class="profile-userpic">
-            <img src="http://placehold.it/50/30a5ff/fff" class="img-responsive" alt="">
+            <img src="{{ asset('storage/'.Auth::user()->profile) }}" class="img-responsive" alt="">
         </div>
         <div class="profile-usertitle">
             <div class="profile-usertitle-name">{{ Auth::user()->name }}</div>
@@ -71,29 +49,59 @@
         <div class="clear"></div>
     </div>
     <div class="divider"></div>
-    <form role="search">
-        <div class="form-group">
-            <input type="text" class="form-control" placeholder="Search">
-        </div>
-    </form>
+
     <ul class="nav menu">
-        <li class="active"><a href="{{ route('consultants.dashboard') }}"><em class="fa fa-dashboard">&nbsp;</em>
+        <li class="active"><a href="{{ route('patients.dashboard') }}"><em class="fa fa-dashboard">&nbsp;</em>
                 Dashboard</a></li>
 
         <li class="parent ">
             <a data-toggle="collapse" href="#sub-item-1">
-                <em class="fa fa-users">&nbsp;</em> Patients
+                <em class="fa fa-folder-open">&nbsp;</em> My Consultation
                 <span data-toggle="collapse" href="#sub-item-1"
                       class="icon pull-right">
                     <em class="fa fa-plus"></em></span>
             </a>
             <ul class="children collapse" id="sub-item-1">
-                <li><a class="" href="{{ route('consultants.patients.index') }}">
-                        <span class="fa fa-arrow-right">&nbsp;</span> List
-                    </a></li>
-                <li><a class="" href="{{ route('consultants.patients.create') }}">
-                        <span class="fa fa-arrow-right">&nbsp;</span> Register New
-                    </a></li>
+                <li>
+                    <a class="" href="{{ route('patients.consultation.index') }}">
+                        <span class="fa fa-arrow-right">&nbsp;</span> All
+                    </a>
+                </li>
+                <li>
+                    <a class="" href="{{ route('patients.consultation.done') }}">
+                        <span class="fa fa-arrow-right">&nbsp;</span> Done
+                    </a>
+                </li>
+                <li>
+                    <a class="" href="{{ route('patients.consultation.waiting') }}">
+                        <span class="fa fa-arrow-right">&nbsp;</span> Waiting
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li class=" ">
+            <a href="{{ route('patients.medical-book.index') }}">
+                <em class="fa fa-book">&nbsp;</em> My Medical Book
+            </a>
+        </li>
+        <li class="parent ">
+            <a data-toggle="collapse" href="#sub-item-11">
+                <em class="fa fa-users">&nbsp;</em> My Appointment
+                <span data-toggle="collapse" href="#sub-item-11"
+                      class="icon pull-right">
+                    <em class="fa fa-plus"></em></span>
+            </a>
+            <ul class="children collapse" id="sub-item-11">
+                <li>
+                    <a class="" href="{{ route('patients.appointment.index') }}">
+                        <span class="fa fa-arrow-right">&nbsp;</span> All
+                    </a>
+                </li>
+                <li>
+                    <a class="" href="{{ route('patients.appointment.create') }}">
+                        <span class="fa fa-arrow-right">&nbsp;</span> New
+                    </a>
+                </li>
             </ul>
         </li>
         <li class="parent ">

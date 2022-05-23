@@ -69,10 +69,18 @@ Route::group([
 Route::group([
     'as' => 'patients.',
     'prefix' => 'patient',
-    'namespace' => 'App\Http\Controllers\Patient',
+    'namespace' => 'App\Http\Controllers\Patients',
     'middleware' => ['auth:patient']],
     function () {
         Route::get('/dashboard', [App\Http\Controllers\Patients\DashboardController::class, 'index'])->name('dashboard');
+
+        Route::get('consultation', [App\Http\Controllers\Patients\ConsultationController::class, 'index'])->name('consultation.index');
+        Route::get('consultation/done', [App\Http\Controllers\Patients\ConsultationController::class, 'done'])->name('consultation.done');
+        Route::get('consultation/waiting', [App\Http\Controllers\Patients\ConsultationController::class, 'waiting'])->name('consultation.waiting');
+
+        Route::get('patients/medical-book', [App\Http\Controllers\Patients\MedicalBookController::class, 'index'])->name('medical-book.index');
+
+        Route::resource('appointment', 'AppointmentController');
     });
 
 // Route::get('/login', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
