@@ -13,7 +13,7 @@
             </table>
         </th>
         <th>
-            <img style="margin: 0; padding: 20px; width: 250px;"
+            <img style="margin: 0; padding: 20px; width: 250px;border-radius: 50%"
                  src="{{ asset('images/5.jpg') }}" alt="logo of the hospital">
         </th>
         <th style="display: flex; justify-content: center">
@@ -98,7 +98,7 @@
                     <tr>
                         <td style="padding-left: 5px; padding-top:25px; padding-bottom: 25px; border: 1px solid;">{{ $consultation->name }} </td>
                         <td style="padding-left: 5px; padding-top:25px; padding-bottom: 25px; border: 1px solid;">{{ $consultation->prescribeBy->name }} </td>
-                        <td style="padding-left: 5px; padding-top:25px; padding-bottom: 25px; border: 1px solid;">{{ $consultation->doctor->name }} </td>
+                        <td style="padding-left: 5px; padding-top:25px; padding-bottom: 25px; border: 1px solid;">{{ $consultation->doctor->name??'Not Found' }} </td>
                         <td style="padding-left: 5px; padding-top:25px; padding-bottom: 25px; border: 1px solid;">
                             @foreach($consultation->prescribedExams as $exam)
                                 <li>{{ $exam->name }} <br> Result: {{ $exam->result }}</li>

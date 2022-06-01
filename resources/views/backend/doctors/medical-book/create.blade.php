@@ -63,21 +63,7 @@
                                     </fieldset>
                                 </div>
 
-                                <div class="form-group center-content gap-5">
-                                    <div>
-                                        <input class="form-check-input" name="inlineRadioOptions" type="radio"
-                                               id="inlineRadio1" value="1" onclick="selectThis(this.value)">
-                                        <label class="form-check-label" for="inlineRadio1">Prescribe an exam</label>
-                                    </div>
-
-                                    <div>
-                                        <input class="form-check-input" type="radio" name="inlineRadioOptions"
-                                               id="inlineRadio2" value="2" onclick="selectThis(this.value)">
-                                        <label class="form-check-label" for="inlineRadio2">Prescribe a drug</label>
-                                    </div>
-                                </div>
-
-                                <div id="exam_section" class="form-group hidden">
+                                <div id="exam_section" class="form-group">
                                     <fieldset>
                                         <legend>Prescribed an exam for this consultation</legend>
                                         <label for="exams">{{ __('List of Exams') }}</label>
@@ -119,7 +105,7 @@
                                     </fieldset>
                                 </div>
 
-                                <div id="drug_section" class="form-group hidden">
+                                <div id="drug_section" class="form-group">
                                     <fieldset>
                                         <legend>Prescribed a Drugs for this consultation</legend>
                                         <label for="drugs">{{ __('List of drugs') }}</label>

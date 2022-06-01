@@ -52,7 +52,7 @@ class MedicalBookController extends Controller
             'patient_id'=>$request->input('patient'),
             'done_by'=> Auth::user()->id,
             'role_prescriber'=>'Doctor',
-            'doctor_id'=>isset($request->doctor) ? $request->doctor : 1,
+            'doctor_id'=>$request->input('doctor'),
         ]));
 
         //update the status of the patient on the department

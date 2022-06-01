@@ -13,7 +13,7 @@
 
                 <!-- Slide 1 -->
                 <div class="carousel-item active"
-                     style="background-image: url({{ asset('images/5.jpg') }} )">
+                     style="background-image: url({{ asset('images/7.jpg') }} )">
                     <div class="container">
                         <h2>Welcome to <span>Follow-UP</span></h2>
                         <p>Follow-UP is a follow up management system build by student of HTTTC bambili for fulfillment of
@@ -24,7 +24,7 @@
 
                 <!-- Slide 2 -->
                 <div class="carousel-item"
-                     style="background-image: url({{ asset('images/3.jpg') }})">
+                     style="background-image: url({{ asset('images/2.jpg') }})">
                     <div class="container">
                         <h2>Why this system</h2>
                         <p>The main target of this project is to minimize time spend in hospital by patient.</p>
@@ -34,7 +34,7 @@
 
                 <!-- Slide 3 -->
                 <div class="carousel-item"
-                     style="background-image: url({{ asset('images/4.jpg') }})">
+                     style="background-image: url({{ asset('images/6.jpg') }})">
                     <div class="container">
                         <h2>Feature of this project:</h2>
 

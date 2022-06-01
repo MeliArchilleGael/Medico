@@ -13,17 +13,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/',[App\Http\Controllers\FrontendController::class, 'index'])->name('home');
-Route::get('/login',[App\Http\Controllers\FrontendController::class, 'index']);
-Route::post('/appointment/store',[App\Http\Controllers\FrontendController::class, 'storeAppointment'])->name('appointment.store');
+Route::get('/', [App\Http\Controllers\FrontendController::class, 'index'])->name('home');
+Route::get('/login', [App\Http\Controllers\FrontendController::class, 'index']);
+Route::post('/appointment/store', [App\Http\Controllers\FrontendController::class, 'storeAppointment'])->name('appointment.store');
 Route::post('/message/store', [App\Http\Controllers\FrontendController::class, 'storeMessage'])->name('message.store');
 Auth::routes();
 
 Route::group([
     'as' => 'auth.profile.',
-    'prefix'=>'auth',
-    'middleware'=>['auth:doctor,user,patient']],
-    function (){
+    'prefix' => 'auth',
+    'middleware' => ['auth:doctor,user,patient']],
+    function () {
         Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'index'])->name('index');
         Route::get('profile/edit', [App\Http\Controllers\ProfileController::class, 'edit'])->name('edit');
         Route::post('profile/store', [App\Http\Controllers\ProfileController::class, 'store'])->name('update');
@@ -48,6 +48,7 @@ Route::group([
     'namespace' => 'App\Http\Controllers\Doctors',
     'middleware' => ['auth:doctor']],
     function () {
+        Route::resource('doctors', 'DoctorController');
         Route::get('/dashboard', [App\Http\Controllers\Doctors\DashboardController::class, 'index'])->name('dashboard');
         Route::get('/doctors/patient', [App\Http\Controllers\Doctors\PatientController::class, 'patient'])->name('patients.index');
         Route::resource('appointment', 'AppointmentController');

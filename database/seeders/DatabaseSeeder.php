@@ -22,7 +22,7 @@ class DatabaseSeeder extends Seeder
         User::create([
             'name' => 'Dev user',
             'password' => Hash::make('password'),
-            'email' => 'user@medico.com',
+            'email' => 'user@follow.com',
         ]);
 
         Patient::create([
@@ -31,9 +31,9 @@ class DatabaseSeeder extends Seeder
             'date_of_birth' => '17/05/2000',
             'telephone' => '+237 658 951 548',
             'password' => Hash::make('password'),
-            'email' => 'patient@medico.com',
+            'email' => 'patient@follow.com',
             'department_id'=>'2',
-            'matriculate'=>'22MED2313',
+            'matriculate'=>'22FOW2313',
         ]);
 
         Doctor::create([
@@ -42,8 +42,9 @@ class DatabaseSeeder extends Seeder
             'date_of_birth'=>'20/01/1997',
             'telephone' => '+237 658 951 548',
             'password' => Hash::make('password'),
-            'email' => 'doctor2@medico.com',
+            'email' => 'doctor@follow.com',
             'speciality'=>'1',
+            'matriculate'=>'22FOW7841',
         ]);
 
         Doctor::create([
@@ -52,8 +53,9 @@ class DatabaseSeeder extends Seeder
             'date_of_birth'=>'20/01/1997',
             'telephone' => '+237 698 951 548',
             'password' => Hash::make('password'),
-            'email' => 'doctor@medico.com',
+            'email' => 'doctor2@follow.com',
             'speciality'=>'2',
+            'matriculate'=>'22FOW2343',
         ]);
 
         $this->call(ConsultationSeed::class);

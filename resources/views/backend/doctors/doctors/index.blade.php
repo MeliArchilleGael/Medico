@@ -1,7 +1,7 @@
 @extends('layouts.Backend')
 
 @section('top_sidebar')
-    @include('layouts.includes.ConsultantTopBar')
+    @include('layouts.includes.DoctorTopBar')
 @endsection
 
 @section('content')
@@ -9,8 +9,8 @@
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <div class="content-between p-1">
-                <h5 class="fw-bolder text-center text-primary"> {{ 'List of Patients' }} </h5>
-                <a href="{{ route('consultants.patients.create') }}" class="btn btn-primary btn-circle">
+                <h5 class="fw-bolder text-center text-primary"> {{ 'List of Doctors in the System' }} </h5>
+                <a href="{{ route('doctors.doctors.create') }}" class="btn btn-primary btn-circle">
                     <i class="fa fa-plus"></i>
                 </a>
             </div>
@@ -49,7 +49,7 @@
                             </td>
                             <td class="align-middle"> {{ $patient->matriculate }} </td>
                             <td class="align-middle"> {{ $patient->name }} </td>
-                            <td class="align-middle"> {{ $patient->telephone }} </td>
+                            <td class="align-middle"> {{ $patient->Telephone }} </td>
                             <td class="align-middle"> {{ $patient->address }} </td>
                             <td class="align-middle"> {{ $patient->created_at }} </td>
 
@@ -62,14 +62,6 @@
                                    class="btn btn-warning">
                                     <i class="fa fa-eye"></i>
                                 </a>
-                                <a href="{{ route('consultants.patients.edit', $patient) }}"
-                                   class="btn btn-primary">
-                                    <i class="fa fa-pencil"></i>
-                                </a>
-                                {{-- <a href="{{ route('consultants.patients.show', $patient) }}"
-                                   class="btn btn-info">
-                                    <i class="fa fa-folder-open"></i>
-                                </a> --}}
                             </td>
                         </tr>
                     @endforeach
@@ -92,11 +84,11 @@
                             <span aria-hidden="true">×</span>
                         </button>
                     </div>
-                    <div class="modal-body">{{ __('Delete Patient Information ') }}</div>
+                    <div class="modal-body">{{ __('Delete Doctor Information ') }}</div>
                     <div class="modal-footer content-between">
                         <button class="btn btn-secondary" type="button"
                                 data-dismiss="modal">{{ __('Cancel') }}</button>
-                        <form action="{{ route('consultants.patients.destroy', $patient->id) }}" method="post">
+                        <form action="{{ route('doctors.doctors.destroy', $patient->id) }}" method="post">
                             @method('DELETE')
                             @csrf
                             <button class="btn btn-danger" type="submit">{{ __('Delete') }}</button>
@@ -112,7 +104,7 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">{{ __('More about the Patient ') }}</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">{{ __('More about the Doctor ') }}</h5>
                         <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">×</span>
                         </button>
@@ -135,13 +127,9 @@
                         <hr>
                         {{ __('Telephone') }} :
                         <ul class="list-unstyled ml-3">
-                            <li>{{ $patient->telephone }}</li>
+                            <li>{{ $patient->Telephone }}</li>
                         </ul>
-                        <hr>
-                        {{ __('Blood Group') }} :
-                        <ul class="list-unstyled ml-3">
-                            <li>{{ $patient->blood_group }}</li>
-                        </ul>
+
                         <hr>
                         {{ __('Address') }} :
                         <ul class="list-unstyled ml-3">
@@ -153,15 +141,11 @@
                             <li>{{ $patient->date_of_birth }}</li>
                         </ul>
                         <hr>
-                        {{ __('Weight') }} :
+                        {{ __('Speciality') }} :
                         <ul class="list-unstyled ml-3">
-                            <li>{{ $patient->weight }} Kg</li>
+                            <li>{{ $patient->department->name }}</li>
                         </ul>
                         <hr>
-                        {{ __('Height') }} :
-                        <ul class="list-unstyled ml-3">
-                            <li>{{ $patient->height }} Cm</li>
-                        </ul>
 
                     </div>
                     <div class="modal-footer">
