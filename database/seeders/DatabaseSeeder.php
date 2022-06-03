@@ -22,11 +22,11 @@ class DatabaseSeeder extends Seeder
         User::create([
             'name' => 'Dev user',
             'password' => Hash::make('password'),
-            'email' => 'user@follow.com',
+            'email' => 'nurse@follow.com',
         ]);
 
         Patient::create([
-            'name' => 'Dev patient',
+            'name' => 'patient',
             'address' => 'Douala',
             'date_of_birth' => '17/05/2000',
             'telephone' => '+237 658 951 548',
@@ -37,23 +37,23 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Doctor::create([
-            'name' => 'Dev doctor',
+            'name' => 'Cardiologue Doctor',
             'address' => 'Bamenda',
             'date_of_birth'=>'20/01/1997',
             'telephone' => '+237 658 951 548',
             'password' => Hash::make('password'),
-            'email' => 'doctor@follow.com',
+            'email' => 'cardiology@follow.com',
             'speciality'=>'1',
             'matriculate'=>'22FOW7841',
         ]);
 
         Doctor::create([
-            'name' => 'Dev Doctor 2',
+            'name' => 'Neurologue Doctor',
             'address' => 'Bamenda',
             'date_of_birth'=>'20/01/1997',
             'telephone' => '+237 698 951 548',
             'password' => Hash::make('password'),
-            'email' => 'doctor2@follow.com',
+            'email' => 'neurologue@follow.com',
             'speciality'=>'2',
             'matriculate'=>'22FOW2343',
         ]);
