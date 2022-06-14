@@ -75,8 +75,8 @@
         <li class="parent ">
             <a data-toggle="collapse" href="#sub-item-11">
                 <em class="fa fa-users">&nbsp;</em>
-                <span style="font-size: 12px">
-                    Department's Patients
+                <span>
+                    Patients
                 </span>
                 <span data-toggle="collapse" href="#sub-item-11"
                       class="icon pull-right">
@@ -97,23 +97,10 @@
                 </li>
             </ul>
         </li>
-        <li class="parent ">
-            <a data-toggle="collapse" href="#sub-item-1">
-                <em class="fa fa-users">&nbsp;</em> Appointment
-                <span data-toggle="collapse" href="#sub-item-1"
-                      class="icon pull-right">
-                    <em class="fa fa-plus"></em></span>
-            </a>
-            <ul class="children collapse" id="sub-item-1">
-                <li><a class="" href="{{ route('doctors.appointment.index') }}">
-                        <span class="fa fa-arrow-right">&nbsp;</span> List
-                    </a>
-                </li>
-            </ul>
-        </li>
+
         <li class="parent ">
             <a data-toggle="collapse" href="#sub-item-123">
-                <em class="fa fa-folder-open">&nbsp;</em> My Consultation
+                <em class="fa fa-folder-open">&nbsp;</em> My Exams
                 <span data-toggle="collapse" href="#sub-item-1"
                       class="icon pull-right">
                     <em class="fa fa-plus"></em></span>
@@ -146,6 +133,20 @@
                 </li>
                 <li><a class="" href="{{ route('doctors.doctors.create') }}">
                         <span class="fa fa-arrow-right">&nbsp;</span> Create
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li class="parent ">
+            <a data-toggle="collapse" href="#sub-item-1">
+                <em class="fa fa-users">&nbsp;</em> Appointment
+                <span data-toggle="collapse" href="#sub-item-1"
+                      class="icon pull-right">
+                    <em class="fa fa-plus"></em></span>
+            </a>
+            <ul class="children collapse" id="sub-item-1">
+                <li><a class="" href="{{ route('doctors.appointment.index') }}">
+                        <span class="fa fa-arrow-right">&nbsp;</span> List
                     </a>
                 </li>
             </ul>

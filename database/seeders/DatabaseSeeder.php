@@ -37,7 +37,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Doctor::create([
-            'name' => 'Cardiologue Doctor',
+            'name' => 'Cardiologist Doctor',
             'address' => 'Bamenda',
             'date_of_birth'=>'20/01/1997',
             'telephone' => '+237 658 951 548',
@@ -48,7 +48,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Doctor::create([
-            'name' => 'Neurologue Doctor',
+            'name' => 'Neurologist Doctor',
             'address' => 'Bamenda',
             'date_of_birth'=>'20/01/1997',
             'telephone' => '+237 698 951 548',
